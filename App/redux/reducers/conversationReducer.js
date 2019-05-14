@@ -1,10 +1,10 @@
 const INITIAL_STATE = {
-    conversations:["Vous n'avez pas de conversation"]
+    conversation:["Vous n'avez pas de conversation"]
     }
     
     export const CONVERSATION_GET = 'CONVERSATION_GET'
     export const CONVERSATION_GET_REQUEST = 'CONVERSATION_GET_REQUEST'
-    export const getConv = (user_id) =>{
+    export const getConv = (conversation) =>{
       return { 
           type: CONVERSATION_GET,
           conversation
