@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Button,Text, View } from 'react-native' 
 import {connect} from 'react-redux'
 import {getConvRequest} from '../redux/reducers/conversationReducer'
+import { FlatList } from 'react-native-gesture-handler';
 
 class ConversationContainer extends Component {
     componentDidMount(){
-        this.props.getConv
+        this.props.getConv()
     }
     toLogin = () =>{
         this.props.navigation.navigate('Login')
@@ -18,9 +19,11 @@ class ConversationContainer extends Component {
                 <Button
                 title="Login"
                 onPress={this.props.getConv}/>
+                <FlatList
+                data={this.props.conversation}
+                renderItem={({item}) => <Text>{item.last}</Text>}
+                />
             </View>
-                
-            
         );
     }
 }
