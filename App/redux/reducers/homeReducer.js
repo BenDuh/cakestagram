@@ -1,31 +1,31 @@
 const INITIAL_STATE = {
-    post: null
+    posts: []
 }
 
-export const GET_POST = 'GET_POST'
-export const GET_POST_REQUEST = 'GET_POST_REQUEST'
+export const GET_POSTS = 'GET_POSTS'
+export const GET_POSTS_REQUEST = 'GET_POSTS_REQUEST'
 
-export const getPost = (post) => {
+export const getPosts = (posts) => {
     return {
-        type: GET_POST,
+        type: GET_POSTS,
         payload: {
-            post
+            posts
         }
     }
 }
 
 export const getPostRequest = () => {
     return {
-        type: GET_POST_REQUEST,
+        type: GET_POSTS_REQUEST,
     }
 }
 
 export const homeReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case GET_POST:
+        case GET_POSTS:
             return {
                 ...state,
-                post: action.payload.post
+                posts: [...state.posts, ...action.payload.posts]
             }
     
         default:

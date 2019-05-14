@@ -1,10 +1,10 @@
-import { put, select, call } from 'redux-saga/effects'
-import { getPost } from '../redux/reducers/homeReducer'
+import { put, call } from 'redux-saga/effects'
+import { getPosts } from '../redux/reducers/homeReducer'
 import api from '../config/api';
 
 export function* getPostSaga() {
     const rsp = yield call([api, 'get'], "/posts")
-    yield put(getPost(rsp.data[2]))
+    yield put(getPosts(rsp.data))
 }
 
 const test = {

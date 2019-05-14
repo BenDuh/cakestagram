@@ -6,7 +6,7 @@ const api = create({
     baseURL: 'https://formation-api.k8s.svc.idee.cloud/api',
     headers: { 
         Accept: 'application/json',
-        authorization: 'Bearer Y1gBUbThMLSXEpQOMz7RbGSYRL4P4KQ25IEopYLzgPY'
+        authorization: 'Bearer xkAkR1JEy4oBbvJ4TZfDCAm6wBFwstXvDx0V_vG7UoI'
     },
 })
 
