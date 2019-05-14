@@ -4,6 +4,9 @@ import {connect} from 'react-redux'
 import {testAppRequest} from '../redux/reducers/applicationReducer'
 
 class TestContainer extends Component {
+    toLogin = () =>{
+        this.props.navigation.navigate('Login')
+    }
     render() {
         const { boss, getBoss } = this.props
         console.log(this.props)
@@ -13,6 +16,9 @@ class TestContainer extends Component {
                 <Button
                 title="Press Me"
                 onPress={getBoss}/>
+                <Button
+                title="Login"
+                onPress={this.toLogin}/>
             </View>
                 
             
