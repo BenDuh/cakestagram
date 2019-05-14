@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button,Text, View } from 'react-native' 
+import SinglePost from './SinglePost';
 
 class HomeContainer extends Component {
 
@@ -7,7 +8,8 @@ class HomeContainer extends Component {
         console.log(this.props)
         return (
             <View>
-                <Text>FDQSJFD</Text>
+                <Text>Fil d'actualité</Text>
+                <SinglePost />
             </View>
         );
     }
