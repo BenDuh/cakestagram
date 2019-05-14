@@ -5,3 +5,4 @@ import { Alert } from 'react-native'
 export function * getTest () {
     yield put(testApp('ttyt'))
 }
+

@@ -7,7 +7,8 @@ import {reducer} from './reducers/applicationReducer'
 
 
 export const rootReducer = combineReducers({
-  reducer
+  reducer,
+  conversation
 })
 
 export default myCreateStore(rootReducer, rootSaga)
