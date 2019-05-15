@@ -9,8 +9,8 @@ import { getSessionRequest } from '../redux/reducers/sessionReducer'
 import {connect} from 'react-redux'
 
 const INITIAL_VALUES = {
-    email: 'tefsdqfdf@fdssfq.fr',
-    password: 'fdsdsqff'
+    email: 'test@test.fr',
+    password: ''
 }
 class LoginContainer extends Component {
     onSubmit = (e) => {

@@ -11,7 +11,7 @@ class TestContainer extends Component {
         const { boss, getBoss } = this.props
         console.log(this.props)
         return (
-            <View>
+            <View style={{marginTop: 30}}>
                 <Text>{boss}</Text>
                 <Button
                 title="Press Me"
@@ -20,8 +20,6 @@ class TestContainer extends Component {
                 title="Login"
                 onPress={this.toLogin}/>
             </View>
-                
-            
         );
     }
 }
