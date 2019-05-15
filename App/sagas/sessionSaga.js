@@ -9,7 +9,7 @@ export function * sessionGet (actions) {
     const rsp2= yield call(api.get, '/api/me')
     yield put(getSession(rsp2.status))
     if(rsp2.status==200){
-        NavigationService.navigate('Home')
+        NavigationService.navigate('Conversation')
     }else{
         const error = 'Username ou Password invalide'
         yield put ({type: 'SESSION_GET_ERROR', error})

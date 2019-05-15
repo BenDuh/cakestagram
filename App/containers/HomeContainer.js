@@ -23,6 +23,7 @@ class HomeContainer extends Component {
         )
 
         return (
+            // <Button title='Go to conversation' onPress={() => this.props.navigation.navigate('Conversation')} />
             <FlatList
                 data={this.props.posts.reverse()}
                 keyExtractor={(item) => `${item.id}`}
