@@ -18,6 +18,7 @@ class HomeContainer extends Component {
         console.log(this.props);
 
         return (
+            // SI ON A LE TEMPS OPTIMISER AVEC scrollToItem() et getItemLayout
             <FlatList
                 data={this.props.posts.reverse()}
                 keyExtractor={(item) => `${item.id}`}
