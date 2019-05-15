@@ -17,17 +17,12 @@ class ConversationContainer extends Component {
                 <Text>fsqfd</Text>
                 <Button
                 title="Login"
-<<<<<<< HEAD
                 onPress={this.props.getConv}/>
-                <FlatList
+                {/* <FlatList
                 data={this.props.conversation}
                 renderItem={({item}) => <Text>{item.last}</Text>}
-                />
+                /> */}
             </View>
-=======
-                onPress={this.toLogin}/>
-            </View>  
->>>>>>> master
         );
     }
 }
