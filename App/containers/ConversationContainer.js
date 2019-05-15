@@ -15,13 +15,25 @@ class ConversationContainer extends Component {
   render() {
     console.log("conversation props", this.props.conversation);
     console.log("autre", this.props.last_message);
+    const { navigation } = this.props
+
     return (
       <View>
         <Text>Conversations</Text>
         
         <FlatList
           data={this.props.conversation}
-          renderItem={({ item }) => <Text>{item.id}</Text>}
+          renderItem={({ item }) => 
+            <Button
+              title={item.id ? item.id.toString() : 'Pas de conversation'}
+              onPress={item.id ? () => navigation.navigate('Chat', { conversationId: item.id }) : console.log('Clique pas, il y a pas de conv')}
+            />
+          }
+        />
+
+        <Button
+          title='New conversation'
+          onPress={() => navigation.navigate('Users')}
         />
       </View>
     );

@@ -1,37 +1,79 @@
 import React, { Component } from 'react';
-import { View, Text, Image, Dimensions } from 'react-native';
-import { Avatar, Icon } from 'react-native-elements';
+import { View, Text } from 'react-native';
+import { Avatar, Image, Card } from 'react-native-elements';
+//import des icons de font-awesome
+import Icon from 'react-native-vector-icons/dist/FontAwesome5';
+import styles from '../theme/styles';
 import moment from 'moment' // Pour formatter les dates
 
 const imgBase = "https://news.nationalgeographic.com/content/dam/news/2018/05/17/you-can-train-your-cat/02-cat-training-NationalGeographic_1484324.ngsversion.1526587209178.adapt.1900.1.jpg";
 
 class SinglePost extends Component {
+    goToSinglePostDetail = (post) => {
+        post = this.props.post
+        console.log("COOKIE", post)
+        this.props.navigation.navigate('Commentdetail', { post })
+    }
+
+    clickLike = () => {
+        
+    }
+
     render() {
-        let { width } = Dimensions.get('screen');
+        console.log("props render single post", this.props)
         const { post } = this.props
-        //console.log(this.props.post);
         const uriAvatar = post ? this.props.post.owner.avatar : imgBase
-        const avatar = <Avatar rounded source={{uri: uriAvatar}} />
+        const avatar = <Avatar rounded source={{ uri: uriAvatar }} containerStyle={styles.singlePostAvatar} />
 
-        const uri = post ? this.props.post.thumb : imgBase
-        const image = <Image source={{ uri }} style={{ height: 200, width: width }} />
+        const uri = post ? post.thumb : imgBase
+        const image = <Image source={{ uri }} style={{ height: 200 }} resizeMode="cover" />
 
-        const ownerFirstname = post ? this.props.post.owner.first_name : "Vide"
+        const ownerFirstname = post ? post.owner.first_name : "Vide"
 
         const dateCreation = post ? moment(post.created_at).calendar() : "Date"
-        
+
+        const like = post.likes_count ?
+            <Icon
+                name="heart"
+                type="font-awesome"
+                style={{ margin: 5 }}
+                size={20}
+                regular
+                onPress={this.clickLike} />
+            :
+            <Icon
+                name="heart"
+                type="font-awesome"
+                style={{ margin: 5 }}
+                size={20}
+                solid
+                onPress={this.clickLike} />
+
+        const comment = post.comments_count ?
+            <Icon name="comment" type="font-awesome" style={{ margin: 5 }} size={20} solid onPress={this.goToSinglePostDetail} />
+            :
+            <Icon name="comment" type="font-awesome" style={{ margin: 5 }} size={20} regular onPress={this.goToSinglePostDetail} />
+
         return (
-            <View>
-                {avatar}
-                <Text>{ownerFirstname}</Text>
-                <Text>{dateCreation}</Text>
+            <Card>
+                <View style={styles.singlePost}>
+                    {avatar}
+                    <View style={styles.singlePostHeader}>
+                        <Text style={styles.singlePostUser}>{ownerFirstname}</Text>
+                        <Text style={styles.singlePostDate}>{dateCreation}</Text>
+                    </View>
+                </View>
                 {image}
-                <Icon 
-                    name="rowing"
-                />
-            </View>
+                <View style={styles.singlePost}>
+                    {like}
+                    {comment}
+                </View>
+                {this.props.withComments ? <Text>Afficher les commentaires</Text> : <Text></Text>}
+            </Card>
+
         );
     }
 }
+
 
 export default SinglePost;
