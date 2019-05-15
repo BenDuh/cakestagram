@@ -15,15 +15,21 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor: '#ffffff',
-        // margin: 10,
     },
     homeConnexion: {
-        
+        paddingHorizontal: 15,
+        justifyContent: 'center',
+        backgroundColor: '#2bcbba',
+    },
+    //CONNEXION APPLI
+    bgColorBleuGrisFonce: {
+        backgroundColor: '#4b6584',
+    },
+    bgColorLogo: {
+        backgroundColor: '#2bcbba',
     },
     //POST
     singlePost: {
-        // ATTENTION FLEX 1 CALCULE LA HAUTEUR ET LA LARGEUR 
         flexDirection: 'row',
     },
     singlePostHeader:{
@@ -38,7 +44,7 @@ const styles = StyleSheet.create({
         color: '#2bcbba',
     },
     singlePostDate: {
-        fontSize: 10,
+        fontSize: 12,
     },
 });
 

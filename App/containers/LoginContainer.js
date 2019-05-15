@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Text, View, KeyboardAvoidingView, StatusBar, StyleSheet, Image } from 'react-native'
+import { Text, View, KeyboardAvoidingView, StatusBar, StyleSheet, Image } from 'react-native'
 import { Header } from 'react-navigation';
 import Form from '../components/form'
 import MyInput from '../components/myInput'
@@ -8,7 +8,8 @@ import { LoginSchemaValidator } from '../validation/LoginSchemaValidator'
 import { getSessionRequest } from '../redux/reducers/sessionReducer'
 import { connect } from 'react-redux'
 import stylesSheet from '../theme/styles'
-import logo from '../images/logo-cakestagram.png'
+import logo from '../images/logo-cakestagram-blanc.png'
+import { Button } from 'react-native-elements';
 
 const INITIAL_VALUES = {
     email: 'test@test.fr',
@@ -26,8 +27,8 @@ class LoginContainer extends Component {
         return (
             <KeyboardAvoidingView style={[stylesSheet.homeConnexion, { flex: 1 }]} behavior="padding" keyboardVerticalOffset={Header.HEIGHT + 40}>
                 <View>
-                    <View style={{alignItems: 'center'}}>
-                        <Image source={logo} style={{ height: 100, width: 350 }} />
+                    <View style={{ alignItems: 'center' }}>
+                        <Image source={logo} style={{ height: 80, width: 300 }} />
                     </View>
 
                     <Formik
@@ -38,21 +39,33 @@ class LoginContainer extends Component {
                             ({ handleChange, values, handleSubmit, ...props }) => {
                                 return (
                                     <Form>
-                                        <MyInput label="email" placeHolder="Entrez votre email" name="email" type="email" />
-                                        <MyInput label="password" placeHolder="Entrez votre password" name="password" type="password" />
+                                        <MyInput label="Email" placeHolder="Entrez votre email" name="email" type="email" />
+                                        <MyInput label="Password" placeHolder="Entrez votre password" name="password" type="password" />
                                         {this.props.error != '' &&
                                             <View style={styles.error}>
                                                 <Text style={styles.errorText}>{this.props.error}</Text>
                                             </View>
                                         }
-                                        <Button title="Connexion" onPress={handleSubmit} color="black" />
+                                        <View style={{ alignItems: 'center' }}>
+                                            <Button
+                                                title="Connexion"
+                                                onPress={handleSubmit}
+                                                buttonStyle={{ backgroundColor: '#4b6584', width: 200, marginBottom: 20 }} />
+                                        </View>
+
                                     </Form>
                                 )
                             }
                         }
                     </Formik>
                 </View>
-                <Button title='Press me to signup' onPress={this.toSignUp} />
+                <View style={{ alignItems: 'center' }}>
+                    <Button
+                        title='Créer un compte'
+                        onPress={this.toSignUp}
+                        buttonStyle={{ backgroundColor: '#0fb9b1', width: 200 }}
+                    />
+                </View>
             </KeyboardAvoidingView>
         );
     }
