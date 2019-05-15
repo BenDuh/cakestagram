@@ -17,7 +17,6 @@ const INITIAL_STATE = {
       }
     
     export const conversationReducer = (state = INITIAL_STATE, action) => {
-        console.log(state)
         switch (action.type) {
             case  CONVERSATION_GET :
                 return {...state,conversation:action.conversation}
