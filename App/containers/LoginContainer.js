@@ -5,18 +5,16 @@ import Form from '../components/form'
 import MyInput from '../components/myInput'
 import {Formik} from 'formik'
 import {LoginSchemaValidator} from '../validation/LoginSchemaValidator'
+import { getSessionRequest } from '../redux/reducers/sessionReducer'
+import {connect} from 'react-redux'
 
 const INITIAL_VALUES = {
-    email: '',
-    password: ''
+    email: 'test@test.fr',
+    password: 'monkey75'
 }
 class LoginContainer extends Component {
-
-    onSubmit = () => {
-        const bonjour = {
-            bonjour: 'bonjour'
-        }
-        this.props.navigation.navigate('Home', bonjour)
+    onSubmit = (e) => {
+        this.props.getSession(e)
     }
     render() {
         return (
@@ -44,4 +42,13 @@ class LoginContainer extends Component {
     }
 }
 
-export default LoginContainer;
+const mapStateToProps = (state)=>{
+    return{
+    }
+}
+const mapDispatchToProps = {
+    getSession: getSessionRequest
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(LoginContainer);

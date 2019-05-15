@@ -49,6 +49,4 @@ const AppBottom = createSwitchNavigator({
     }
 );
 
-
-
 export default createAppContainer(AppBottom);

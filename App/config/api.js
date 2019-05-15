@@ -3,15 +3,14 @@ import { create } from 'apisauce'
 
 //APPEL API
 const api = create({
-    baseURL: 'https://formation-api.k8s.svc.idee.cloud/api',
+    baseURL: 'https://formation-api.k8s.svc.idee.cloud',
     headers: { 
         Accept: 'application/json',
-<<<<<<< HEAD
-        authorization: 'Bearer ga9YpRGD8T2UBZWwwZ42u1r1sPuPinwRlVU9EFwTAXg'
-=======
-        authorization: 'Bearer RRnWwkNhTyMhQyh0id-GumGGpKMper_UVJpIi_BOfYw'
->>>>>>> master
+        // authorization: 'Bearer ga9YpRGD8T2UBZWwwZ42u1r1sPuPinwRlVU9EFwTAXg'
     },
 })
+
+
+
 
 export default api
