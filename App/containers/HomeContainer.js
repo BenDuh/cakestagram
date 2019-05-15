@@ -24,7 +24,7 @@ class HomeContainer extends Component {
 
         return (
             <FlatList
-                data={this.props.posts}
+                data={this.props.posts.reverse()}
                 keyExtractor={(item) => `${item.id}`}
                 renderItem={this._renderPost}
             />
