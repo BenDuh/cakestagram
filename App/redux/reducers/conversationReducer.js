@@ -18,7 +18,10 @@ export const getConvRequest = () =>{
       } 
     
     export const conversationReducer = (state = INITIAL_STATE, action) => {
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
         switch (action.type) {
             case  CONVERSATION_GET :
                 return {...state, conversation:action.conversation}          

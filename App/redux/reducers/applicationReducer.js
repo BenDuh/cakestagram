@@ -1,5 +1,3 @@
-
-
 const INITIAL_STATE = {
 boss:'benoit'
 }
