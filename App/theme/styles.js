@@ -18,6 +18,9 @@ const styles = StyleSheet.create({
         // backgroundColor: '#ffffff',
         // margin: 10,
     },
+    homeConnexion: {
+        
+    },
     //POST
     singlePost: {
         // ATTENTION FLEX 1 CALCULE LA HAUTEUR ET LA LARGEUR 

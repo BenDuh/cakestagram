@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Button, Text, View, KeyboardAvoidingView, StatusBar, StyleSheet } from 'react-native'
+import { Button, Text, View, KeyboardAvoidingView, StatusBar, StyleSheet, Image } from 'react-native'
 import { Header } from 'react-navigation';
 import Form from '../components/form'
 import MyInput from '../components/myInput'
-import {Formik} from 'formik'
-import {LoginSchemaValidator} from '../validation/LoginSchemaValidator'
+import { Formik } from 'formik'
+import { LoginSchemaValidator } from '../validation/LoginSchemaValidator'
 import { getSessionRequest } from '../redux/reducers/sessionReducer'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import stylesSheet from '../theme/styles'
+import logo from '../images/logo-cakestagram.png'
 
 const INITIAL_VALUES = {
     email: 'test@test.fr',
@@ -16,44 +18,48 @@ class LoginContainer extends Component {
     onSubmit = (e) => {
         this.props.getSession(e)
     }
-    toSignUp = () =>{
+    toSignUp = () => {
         this.props.navigation.navigate('Signup')
     }
     render() {
         console.log(this.props.error)
         return (
-            <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={Header.HEIGHT + 40}>
+            <KeyboardAvoidingView style={[stylesSheet.homeConnexion, { flex: 1 }]} behavior="padding" keyboardVerticalOffset={Header.HEIGHT + 40}>
                 <View>
+                    <View style={{alignItems: 'center'}}>
+                        <Image source={logo} style={{ height: 100, width: 350 }} />
+                    </View>
+
                     <Formik
                         initialValues={INITIAL_VALUES}
                         onSubmit={this.onSubmit}
                         validationSchema={LoginSchemaValidator}>
                         {
-                            ({handleChange,values,handleSubmit,...props})=>{
-                                return(
+                            ({ handleChange, values, handleSubmit, ...props }) => {
+                                return (
                                     <Form>
-                                        <MyInput label="email" placeHolder="Entrez votre email" name="email" type="email"/>
-                                        <MyInput label="password" placeHolder="Entrez votre password" name="password" type="password"/>
+                                        <MyInput label="email" placeHolder="Entrez votre email" name="email" type="email" />
+                                        <MyInput label="password" placeHolder="Entrez votre password" name="password" type="password" />
                                         {this.props.error != '' &&
-                                        <View style={styles.error}>
-                                            <Text style={styles.errorText}>{this.props.error}</Text>
-                                        </View>
-                                    }
-                                        <Button title="Connexion" onPress={handleSubmit} color="black"/>
+                                            <View style={styles.error}>
+                                                <Text style={styles.errorText}>{this.props.error}</Text>
+                                            </View>
+                                        }
+                                        <Button title="Connexion" onPress={handleSubmit} color="black" />
                                     </Form>
                                 )
                             }
                         }
                     </Formik>
                 </View>
-                <Button title='Press me to signup' onPress={this.toSignUp}/>
+                <Button title='Press me to signup' onPress={this.toSignUp} />
             </KeyboardAvoidingView>
         );
     }
 }
 
-const mapStateToProps = (state)=>{
-    return{
+const mapStateToProps = (state) => {
+    return {
         error: state.sessionReducer.error
     }
 }
@@ -63,15 +69,15 @@ const mapDispatchToProps = {
 
 const styles = StyleSheet.create({
     error: {
-      width:'100%',
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginBottom: 13
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 13
     },
     errorText: {
         color: 'red',
         fontSize: 16
     }
-  });
+});
 
-export default connect(mapStateToProps,mapDispatchToProps)(LoginContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

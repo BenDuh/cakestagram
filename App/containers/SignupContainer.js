@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Text, View, KeyboardAvoidingView, StatusBar } from 'react-native'
+import { Button, Text, View, KeyboardAvoidingView, StatusBar, Image } from 'react-native'
 import { Header } from 'react-navigation';
 import Form from '../components/form'
 import MyInput from '../components/myInput'
