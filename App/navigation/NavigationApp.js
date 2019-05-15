@@ -2,9 +2,10 @@ import { createStackNavigator, createAppContainer, createBottomTabNavigator, cre
 import LoginContainer from "../containers/LoginContainer";
 import TestContainer from "../containers/TestContainer";
 import HomeContainer from "../containers/HomeContainer";
+import SinglePostDetails from "../containers/SinglePostDetails";
 import ConversationContainer from "../containers/ConversationContainer";
 import SignupContainer from "../containers/SignupContainer";
-import UserContainer from '../containers/UserContainer'; 
+import UserContainer from '../containers/UserContainer';
 import ChatContainer from "../containers/ChatContainer";
 
 const AppNavigator = createStackNavigator({
@@ -13,11 +14,11 @@ const AppNavigator = createStackNavigator({
         navigationOptions: {
             title: 'Login'
         }
-        },
-    Signup:{
+    },
+    Signup: {
         screen: SignupContainer,
-        navigationOptions:{
-            title:'Signup'
+        navigationOptions: {
+            title: 'Signup'
         }
     },
     Test: {
@@ -26,10 +27,10 @@ const AppNavigator = createStackNavigator({
             title: 'Test'
         }
     }
-    }, {
-    initialRouteName: 'Login',
-    headerLayoutPreset: 'center',
-})
+}, {
+        initialRouteName: 'Login',
+        headerLayoutPreset: 'center',
+    })
 
 const HomeNavigator = createStackNavigator({
     Home: {
@@ -37,14 +38,20 @@ const HomeNavigator = createStackNavigator({
         navigationOptions: {
             title: 'Home'
         }
-        },
-    Conversation : {
+    },
+    Commentdetail: {
+        screen: SinglePostDetails,
+        navigationOptions: {
+            title: 'Post Details'
+        }
+    },
+    Conversation: {
         screen: ConversationContainer,
         navigationOptions: {
             title: 'Conversation'
         }
-        },
-    Users : {
+    },
+    Users: {
         screen: UserContainer,
         navigationOptions: {
             title: 'Users'
@@ -56,16 +63,15 @@ const HomeNavigator = createStackNavigator({
             title: 'Chat'
         }
     }
-    },
-    {    
-    initialRouteName: 'Home',
-    headerLayoutPreset: 'center',
-})
+}, {
+        initialRouteName: 'Home',
+        headerLayoutPreset: 'center',
+    })
 
 const AppBottom = createSwitchNavigator({
     LoginStack: AppNavigator,
     HomeStack: HomeNavigator,
-    },
+},
     {
     initialRouteName: 'LoginStack',
     }

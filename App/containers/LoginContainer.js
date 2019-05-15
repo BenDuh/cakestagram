@@ -22,7 +22,7 @@ class LoginContainer extends Component {
     render() {
         console.log(this.props.error)
         return (
-            <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={Header.HEIGHT + StatusBar.currentHeight}>
+            <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={Header.HEIGHT + 40}>
                 <View>
                     <Formik
                         initialValues={INITIAL_VALUES}

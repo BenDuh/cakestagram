@@ -27,7 +27,7 @@ class SignupContainer extends Component {
         console.log(this.props)
         return (
             
-            <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={Header.HEIGHT + StatusBar.currentHeight}>
+            <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={Header.HEIGHT + 40}>
                 <View>
                     <Formik
                         initialValues={INITIAL_VALUES}
