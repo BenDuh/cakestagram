@@ -16,16 +16,10 @@ class TestContainer extends Component {
                 <Button
                 title="Press Me"
                 onPress={getBoss}/>
-<<<<<<< Updated upstream
                 <Button
                 title="Login"
                 onPress={this.toLogin}/>
             </View>
-                
-            
-=======
-            </View>   
->>>>>>> Stashed changes
         );
     }
 }
