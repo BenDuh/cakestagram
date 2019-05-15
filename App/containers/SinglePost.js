@@ -4,6 +4,7 @@ import { Avatar, Image, Card } from 'react-native-elements';
 //import des icons de font-awesome
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import styles from '../theme/styles';
+import moment from 'moment' // Pour formatter les dates
 
 const imgBase = "https://news.nationalgeographic.com/content/dam/news/2018/05/17/you-can-train-your-cat/02-cat-training-NationalGeographic_1484324.ngsversion.1526587209178.adapt.1900.1.jpg";
 
@@ -29,7 +30,7 @@ class SinglePost extends Component {
 
         const ownerFirstname = post ? post.owner.first_name : "Vide"
 
-        const dateCreation = post ? this.props.post.created_at : "Date"
+        const dateCreation = post ? moment(post.created_at).calendar() : "Date"
 
         const like = post.likes_count ?
             <Icon

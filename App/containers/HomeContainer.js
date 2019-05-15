@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList } from 'react-native'
+import { FlatList, View, Button } from 'react-native'
 import SinglePost from './SinglePost';
 import { getPostRequest } from '../redux/reducers/homeReducer'
 //APISAUCE
@@ -10,7 +10,7 @@ class HomeContainer extends Component {
         this.props.getPostRequest();
     }
 
-    _renderPost = ({item}) => (
+    _renderPost = ({ item }) => (
         <SinglePost post={item} id={item.id} navigation={this.props.navigation} withComments={false} />
     )
 
@@ -19,11 +19,15 @@ class HomeContainer extends Component {
 
         return (
             // SI ON A LE TEMPS OPTIMISER AVEC scrollToItem() et getItemLayout
-            <FlatList
-                data={this.props.posts.reverse()}
-                keyExtractor={(item) => `${item.id}`}
-                renderItem={this._renderPost}
-            />
+            <View>
+                <Button title='Go to conversation' onPress={() => this.props.navigation.navigate('Conversation')} />
+                <FlatList
+                    data={this.props.posts.reverse()}
+                    keyExtractor={(item) => `${item.id}`}
+                    renderItem={this._renderPost}
+                />
+            </View>
+
         );
     }
 }
