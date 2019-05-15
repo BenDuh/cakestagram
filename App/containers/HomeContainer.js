@@ -11,16 +11,11 @@ class HomeContainer extends Component {
     }
 
     _renderPost = ({item}) => (
-        <SinglePost post={item} id={item.id} />
+        <SinglePost post={item} id={item.id} navigation={this.props.navigation} withComments={false} />
     )
 
     render() {
         console.log(this.props);
-        console.log("mon post : ", this.props.posts[0]);
-
-        const listOfPosts = this.props.posts.map((singlePost) =>
-            <SinglePost post={singlePost} key={singlePost.id} />
-        )
 
         return (
             <FlatList

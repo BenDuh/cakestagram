@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Button,Text, View } from 'react-native' 
+import { Button, Text, View } from 'react-native'
 
 class LoginContainer extends Component {
-    
-    toHome = () =>{
+
+    toHome = () => {
         const bonjour = {
             bonjour: 'bonjour'
         }
@@ -14,8 +14,8 @@ class LoginContainer extends Component {
             <View>
                 <Text>FDQSJFD</Text>
                 <Button
-                title="Home"
-                onPress={this.toHome}/>
+                    title="Home"
+                    onPress={this.toHome} />
             </View>
         );
     }

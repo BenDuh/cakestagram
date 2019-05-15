@@ -2,6 +2,7 @@ import { createStackNavigator, createAppContainer, createBottomTabNavigator, cre
 import LoginContainer from "../containers/LoginContainer";
 import TestContainer from "../containers/TestContainer";
 import HomeContainer from "../containers/HomeContainer";
+import SinglePostDetails from "../containers/SinglePostDetails";
 
 const AppNavigator = createStackNavigator({
     Login: {
@@ -9,17 +10,18 @@ const AppNavigator = createStackNavigator({
         navigationOptions: {
             title: 'Login'
         }
-        },
+    },
     Test: {
         screen: TestContainer,
         navigationOptions: {
             title: 'Test'
         }
-    }
-    }, {
-    initialRouteName: 'Test',
-    headerLayoutPreset: 'center',
-})
+    },
+    
+}, {
+        initialRouteName: 'Test',
+        headerLayoutPreset: 'center',
+    })
 
 const HomeNavigator = createStackNavigator({
     Home: {
@@ -27,18 +29,24 @@ const HomeNavigator = createStackNavigator({
         navigationOptions: {
             title: 'Home'
         }
+    },
+    Commentdetail: {
+        screen: SinglePostDetails,
+        navigationOptions: {
+            title: 'Post Details'
         }
-    }, {
-    initialRouteName: 'Home',
-    headerLayoutPreset: 'center',
-})
+    },
+}, {
+        initialRouteName: 'Home',
+        headerLayoutPreset: 'center',
+    })
 
 const AppBottom = createSwitchNavigator({
     LoginStack: AppNavigator,
     HomeStack: HomeNavigator,
-    },
+},
     {
-    initialRouteName: 'HomeStack',
+        initialRouteName: 'HomeStack',
     }
 );
 
