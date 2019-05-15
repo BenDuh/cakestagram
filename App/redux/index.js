@@ -5,13 +5,15 @@ import { reducer } from './reducers/applicationReducer'
 import { homeReducer as home } from './reducers/homeReducer'
 import {conversationReducer} from './reducers/conversationReducer'
 import {userReducer} from './reducers/userReducer'
+import { chatReducer as chat } from './reducers/chatReducer'
 
 
 export const rootReducer = combineReducers({
   reducer,
   home,
   conversationReducer,
-  userReducer
+  userReducer,
+  chat
 })
 
 export default myCreateStore(rootReducer, rootSaga)

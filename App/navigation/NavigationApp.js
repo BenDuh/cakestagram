@@ -4,6 +4,7 @@ import TestContainer from "../containers/TestContainer";
 import HomeContainer from "../containers/HomeContainer";
 import ConversationContainer from "../containers/ConversationContainer";
 import UserContainer from '../containers/UserContainer'; 
+import ChatContainer from "../containers/ChatContainer";
 
 const AppNavigator = createStackNavigator({
     Login: {
@@ -41,9 +42,16 @@ const HomeNavigator = createStackNavigator({
         navigationOptions: {
             title: 'Users'
         }
+    },
+    Chat: {
+        screen: ChatContainer,
+        nagigationOptions: {
+            title: 'Chat'
+        }
     }
-    },{    
-    initialRouteName: 'Users',
+    },
+    {    
+    initialRouteName: 'Chat',
     headerLayoutPreset: 'center',
 })
 
