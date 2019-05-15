@@ -1,10 +1,9 @@
 const INITIAL_STATE = {
     fetching: false
 }
-
-
 export const SESSION_GET = 'SESSION_GET'
 export const SESSION_GET_REQUEST = 'SESSION_GET_REQUEST'
+export const SESSION_GET_ERROR = 'SESSION_GET_ERROR'
 
 export const getSession= (sessionObject) =>{
     return { 
@@ -22,14 +21,25 @@ export const getSessionRequest = (e) =>{
         }   
     }
 }
+export const getSessionError = () =>{
+    return { 
+        type: SESSION_GET_ERROR,
+        error
+    }
+}
 
 export const sessionReducer = (state = INITIAL_STATE, action) => {
-    console.log(state)
     switch (action.type) {
         case SESSION_GET_REQUEST:
             return {
                 ...state,
                 fetching: true
+            }
+        case SESSION_GET_ERROR:
+            return {
+                ...state,
+                fetching: false,
+                error: action.error
             }
         case  SESSION_GET :
             return {
