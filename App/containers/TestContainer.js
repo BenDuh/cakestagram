@@ -20,8 +20,6 @@ class TestContainer extends Component {
                 title="Login"
                 onPress={this.toLogin}/>
             </View>
-                
-            
         );
     }
 }
