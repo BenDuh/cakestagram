@@ -16,6 +16,9 @@ class LoginContainer extends Component {
     onSubmit = (e) => {
         this.props.getSession(e)
     }
+    toSignUp = () =>{
+        this.props.navigation.navigate('Signup')
+    }
     render() {
         console.log(this.props.error)
         return (
@@ -43,6 +46,7 @@ class LoginContainer extends Component {
                         }
                     </Formik>
                 </View>
+                <Button title='Press me to signup' onPress={this.toSignUp}/>
             </KeyboardAvoidingView>
         );
     }
