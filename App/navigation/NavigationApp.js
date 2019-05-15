@@ -20,7 +20,7 @@ const AppNavigator = createStackNavigator({
         }
     }
     }, {
-    initialRouteName: 'Test',
+    initialRouteName: 'Login',
     headerLayoutPreset: 'center',
 })
 
@@ -51,7 +51,7 @@ const HomeNavigator = createStackNavigator({
     }
     },
     {    
-    initialRouteName: 'Chat',
+    initialRouteName: 'Home',
     headerLayoutPreset: 'center',
 })
 
@@ -60,7 +60,7 @@ const AppBottom = createSwitchNavigator({
     HomeStack: HomeNavigator,
     },
     {
-    initialRouteName: 'HomeStack',
+    initialRouteName: 'LoginStack',
     }
 );
 
