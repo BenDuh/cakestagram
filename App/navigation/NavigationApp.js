@@ -38,7 +38,7 @@ const AppBottom = createSwitchNavigator({
     HomeStack: HomeNavigator,
     },
     {
-    initialRouteName: 'LoginStack',
+    initialRouteName: 'HomeStack',
     }
 );
 
