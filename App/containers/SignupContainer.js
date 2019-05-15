@@ -4,55 +4,64 @@ import { Header } from 'react-navigation';
 import Form from '../components/form'
 import MyInput from '../components/myInput'
 import {Formik} from 'formik'
-import {LoginSchemaValidator} from '../validation/LoginSchemaValidator'
-import { getSessionRequest } from '../redux/reducers/sessionReducer'
+import {SignupSchemaValidator} from '../validation/LoginSchemaValidator'
+import {getSignupRequest} from '../redux/reducers/signupReducer'
 import {connect} from 'react-redux'
 
 const INITIAL_VALUES = {
-    email: 'test@test.fr',
-    password: 'monkey75'
+    nom:'fdsfdq',
+    prenom:'sdqqsd',
+    email: 'fdqsf@sdf.fr',
+    password: 'qsfdfqfsd'
+    
 }
-class LoginContainer extends Component {
+class SignupContainer extends Component {
+
     onSubmit = (e) => {
-        this.props.getSession(e)
+        this.props.getSignup(e)
+        
+        //this.props.navigation.navigate('Home') A FAIRE DANS LA SAGA AVC NAV TOP LVL
     }
-    toSignUp = () =>{
-        this.props.navigation.navigate('Signup')
-    }
+   
     render() {
+        console.log(this.props)
         return (
+            
             <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={Header.HEIGHT + StatusBar.currentHeight}>
                 <View>
                     <Formik
                         initialValues={INITIAL_VALUES}
                         onSubmit={this.onSubmit}
-                        validationSchema={LoginSchemaValidator}>
+                        validationSchema={SignupSchemaValidator}>
                         {
                             ({handleChange,values,handleSubmit,...props})=>{
                                 return(
                                     <Form>
-                                        <MyInput label="email" placeHolder="Entrez votre email" name="email" type="email"/>
+                                        <MyInput label="Nom" placeHolder="Entrez votre nom" name="nom" type="text"/>
+                                        <MyInput label="Prénom" placeHolder="Entrez votre prénom" name="prenom" type="text"/>
+                                        <MyInput label="Email" placeHolder="Entrez votre email" name="email" type="email"/>
                                         <MyInput label="password" placeHolder="Entrez votre password" name="password" type="password"/>
-                                        <Button title="Connexion" onPress={handleSubmit} color="black"/>
+                                        <Button title="Créer votre compte" onPress={handleSubmit} color="black"/>
                                     </Form>
                                 )
                             }
                         }
                     </Formik>
                 </View>
-                <Button title='Press me to signup' onPress={this.toSignUp}/>
             </KeyboardAvoidingView>
         );
     }
 }
+
+
 
 const mapStateToProps = (state)=>{
     return{
     }
 }
 const mapDispatchToProps = {
-    getSession: getSessionRequest
+    getSignup: getSignupRequest
 }
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(LoginContainer);
+export default connect(mapStateToProps,mapDispatchToProps)(SignupContainer);

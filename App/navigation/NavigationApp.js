@@ -3,6 +3,7 @@ import LoginContainer from "../containers/LoginContainer";
 import TestContainer from "../containers/TestContainer";
 import HomeContainer from "../containers/HomeContainer";
 import ConversationContainer from "../containers/ConversationContainer";
+import SignupContainer from "../containers/SignupContainer";
 
 const AppNavigator = createStackNavigator({
     Login: {
@@ -11,6 +12,12 @@ const AppNavigator = createStackNavigator({
             title: 'Login'
         }
         },
+    Signup:{
+        screen: SignupContainer,
+        navigationOptions:{
+            title:'Signup'
+        }
+    },
     Test: {
         screen: TestContainer,
         navigationOptions: {
