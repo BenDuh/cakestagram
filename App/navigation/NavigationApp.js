@@ -43,7 +43,7 @@ const HomeNavigator = createStackNavigator({
         }
     }
     },{    
-    initialRouteName: 'Users',
+    initialRouteName: 'Conversation',
     headerLayoutPreset: 'center',
 })
 

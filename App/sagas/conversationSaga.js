@@ -6,5 +6,4 @@ import api from '../config/api'
 export function * conversationGet () {
     const rsp = yield call ([api, 'get'], "/conversations")
     yield put(getConv(rsp.data))
-    console.log(rsp.data)
 }

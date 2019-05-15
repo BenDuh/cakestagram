@@ -15,7 +15,6 @@ class UserContainer extends Component {
     } */
 
   render() {
-console.log('user props', this.props.user)
       
     return (
       <View>
@@ -30,7 +29,7 @@ console.log('user props', this.props.user)
 }
 
 const mapStateToProps = state => {
-    console.log(state)
+   
   return {
     user: state.userReducer.user
   };
