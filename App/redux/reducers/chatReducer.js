@@ -14,9 +14,12 @@ export const getMessages = (messages) => {
   }
 }
 
-export const getMessagesRequest = () => {
+export const getMessagesRequest = (conversationId) => {
   return {
-    type: GET_MESSAGES_REQUEST
+    type: GET_MESSAGES_REQUEST,
+    payload: {
+      conversationId
+    }
   }
 }
 
