@@ -1,5 +1,3 @@
-
-
 const INITIAL_STATE = {
 boss:'benoit'
 }
@@ -19,7 +17,6 @@ export const testAppRequest = () =>{
   }
 
 export const reducer = (state = INITIAL_STATE, action) => {
-    console.log(state)
     switch (action.type) {
         case APPLICATION_ACTION:
             return {...state,boss:action.boss}
