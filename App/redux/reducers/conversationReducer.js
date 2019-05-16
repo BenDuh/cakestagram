@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-    conversation:["Vous n'avez pas de conversation"]
+    conversation:[]
     }
     
     export const CONVERSATION_GET = 'CONVERSATION_GET'
