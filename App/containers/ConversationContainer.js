@@ -23,13 +23,15 @@ render() {
     keyExtractor={(item)=>(item.id).toString()}
     data={conversation}
     renderItem={
-      ({item}) => 
-      <Text containerStyle={{ position: 'absolute', top: -4, right: -4 }}>
-      {/* {item.user.last_name} 
-      {item.last_message.text} */}
-</Text>}
+      ({item}) =>
+      
+     <Button
+     title={item.user.last_name}
+     onPress={() => navigation.navigate('Chat', {conversation: item})}
+     buttonStyle={{ backgroundColor: '#2bcbba', width: 200, marginBottom: 20 }}
+   />
+}
   />
-
   <Button
   title='New conversation'
   onPress={() => navigation.navigate('Users')}
