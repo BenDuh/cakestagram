@@ -11,13 +11,7 @@ class ConversationContainer extends Component {
   }
 
  /* render() {
-  render() {
-    console.log("conversation props", this.props.conversation);
-    console.log("autre", this.props.last_message);
-    const { navigation } = this.props
-
     return (
-    
       <View>
         <Text>Conversations</Text>
       
@@ -42,7 +36,7 @@ class ConversationContainer extends Component {
   }
 } 
  */
-
+/* 
 displayRealmessages=(item)=>{
   console.log(item);
  if(item.last_message.text!=null)
@@ -52,19 +46,22 @@ displayRealmessages=(item)=>{
   } else {
   console.log(item)
   }
-}
+} */
 
 render(){
-
+console.log('fdsqsfd',this.props.conversation.length)
   return (
     
   <View>
         <Text>Conversations</Text>
-      
+
         <FlatList
           data={this.props.conversation}
-          renderItem={(item)=>this.displayRealmessages(item)}
+          renderItem={({item}) => {
+            console.log('item', item.user)
+  return (<Text>{item.id}</Text>)}}
         />
+        
       </View>
     );
   }

@@ -63,17 +63,10 @@ const HomeNavigator = createStackNavigator({
             title: 'Chat'
         }
     }
-<<<<<<< HEAD
-    },{    
-    initialRouteName: 'Conversation',
-    headerLayoutPreset: 'center',
-})
-=======
-}, {
+    }, {
         initialRouteName: 'Home',
         headerLayoutPreset: 'center',
-    })
->>>>>>> master
+})
 
 const AppBottom = createSwitchNavigator({
     LoginStack: AppNavigator,

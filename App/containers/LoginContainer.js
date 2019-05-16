@@ -10,7 +10,7 @@ import {connect} from 'react-redux'
 
 const INITIAL_VALUES = {
     email: 'test@test.fr',
-    password: ''
+    password: 'monkey75'
 }
 class LoginContainer extends Component {
     onSubmit = (e) => {
