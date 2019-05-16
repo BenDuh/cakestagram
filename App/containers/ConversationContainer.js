@@ -6,28 +6,43 @@ import { FlatList } from "react-native-gesture-handler";
 import { Button } from 'react-native-elements';
 import ListConversation from '../components/ListConversation'
 
+
 class ConversationContainer extends Component {
   componentDidMount() {
     this.props.getConv();
 }
 
 render() {
-  
-  return (
-    <FlatList
-    data={this.props.conversation}
-    renderItem={
-      ({item}) => 
-      
-      <Text containerStyle={{ position: 'absolute', top: -4, right: -4 }}>
-      {item.user.last_name} 
-      {item.last_message.text}
-</Text>}
-  />
+  const{ navigation, conversation }= this.props
+  console.log("requette", this.props)
 
+  return (
+    <View>
+    <FlatList
+    //necessaire key avec tostring car string attendu
+    keyExtractor={(item)=>(item.id).toString()}
+    data={conversation}
+    renderItem={
+      ({item}) =>
+      
+     <Button
+     title={item.user.last_name}
+     onPress={() => navigation.navigate('Chat', {conversation: item})}
+     buttonStyle={{ backgroundColor: '#2bcbba', width: 200, marginBottom: 20 }}
+   />
+}
+  />
+  <Button
+  title='New conversation'
+  onPress={() => navigation.navigate('Users')}
+  buttonStyle={{ backgroundColor: '#2bcbba', width: 200, marginBottom: 20 }}
+/>
+</View>
   );
 }
 }
+
+
 
 
 const mapStateToProps = state => {
