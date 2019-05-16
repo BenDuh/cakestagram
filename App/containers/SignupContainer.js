@@ -1,54 +1,51 @@
 import React, { Component } from 'react';
-import { Text, View, KeyboardAvoidingView, StatusBar, StyleSheet, Image } from 'react-native'
+import { View, KeyboardAvoidingView, StyleSheet, Text } from 'react-native'
 import { Header } from 'react-navigation';
 import Form from '../components/form'
 import MyInput from '../components/myInput'
 import { Formik } from 'formik'
-import { LoginSchemaValidator } from '../validation/LoginSchemaValidator'
-import { getSessionRequest } from '../redux/reducers/sessionReducer'
+import { SignupSchemaValidator } from '../validation/LoginSchemaValidator'
+import { getSignupRequest } from '../redux/reducers/signupReducer'
 import { connect } from 'react-redux'
-import stylesSheet from '../theme/styles'
-import logo from '../images/logo-cakestagram-blanc.png'
 import { Button } from 'react-native-elements';
 
 const INITIAL_VALUES = {
-    email: 'test@test.fr',
-    password: ''
-}
-class LoginContainer extends Component {
-    onSubmit = (e) => {
-        this.props.getSession(e)
-    }
-    toSignUp = () => {
-        this.props.navigation.navigate('Signup')
-    }
-    render() {
-        console.log(this.props.error)
-        return (
-            <KeyboardAvoidingView style={[stylesSheet.homeConnexion, { flex: 1 }]} behavior="padding" keyboardVerticalOffset={Header.HEIGHT + 40}>
-                <View>
-                    <View style={{ alignItems: 'center' }}>
-                        <Image source={logo} style={{ height: 80, width: 300 }} />
-                    </View>
+    nom: 'fdsfdq',
+    prenom: 'sdqqsd',
+    email: 'fdqsf@sdf.fr',
+    password: 'qsfdfqfsd'
 
+}
+class SignupContainer extends Component {
+    onSubmit = (e) => {
+        this.props.getSignup(e)
+    }
+
+    render() {
+        console.log('error', this.props.error)
+        return (
+            <KeyboardAvoidingView style={{ flex: 1, backgroundColor: '#2bcbba', paddingHorizontal: 15 }} behavior="padding" keyboardVerticalOffset={Header.HEIGHT + 40}>
+                <View>
                     <Formik
                         initialValues={INITIAL_VALUES}
                         onSubmit={this.onSubmit}
-                        validationSchema={LoginSchemaValidator}>
+                        validationSchema={SignupSchemaValidator}>
                         {
                             ({ handleChange, values, handleSubmit, ...props }) => {
                                 return (
                                     <Form>
+                                        <MyInput label="Nom" placeHolder="Entrez votre nom" name="nom" type="text" />
+                                        <MyInput label="Prénom" placeHolder="Entrez votre prénom" name="prenom" type="text" />
                                         <MyInput label="Email" placeHolder="Entrez votre email" name="email" type="email" />
-                                        <MyInput label="Password" placeHolder="Entrez votre password" name="password" type="password" />
+                                        <MyInput label="password" placeHolder="Entrez votre password" name="password" type="password" />
                                         {this.props.error != '' &&
                                             <View style={styles.error}>
                                                 <Text style={styles.errorText}>{this.props.error}</Text>
                                             </View>
                                         }
-                                        <View style={{ alignItems: 'center' }}>
+                                        <View style={{alignItems: 'center', marginTop: 20}}>
                                             <Button
-                                                title="Connexion"
+                                                title="Créer votre compte"
                                                 onPress={handleSubmit}
                                                 buttonStyle={{ backgroundColor: '#4b6584', width: 200, marginBottom: 20 }} />
                                         </View>
@@ -59,25 +56,20 @@ class LoginContainer extends Component {
                         }
                     </Formik>
                 </View>
-                <View style={{ alignItems: 'center' }}>
-                    <Button
-                        title='Créer un compte'
-                        onPress={this.toSignUp}
-                        buttonStyle={{ backgroundColor: '#0fb9b1', width: 200 }}
-                    />
-                </View>
             </KeyboardAvoidingView>
         );
     }
 }
 
+
+
 const mapStateToProps = (state) => {
     return {
-        error: state.sessionReducer.error
+        error: state.signupReducer.error
     }
 }
 const mapDispatchToProps = {
-    getSession: getSessionRequest
+    getSignup: getSignupRequest
 }
 
 const styles = StyleSheet.create({
@@ -93,4 +85,5 @@ const styles = StyleSheet.create({
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupContainer);

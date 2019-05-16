@@ -15,22 +15,22 @@ class UserContainer extends Component {
     } */
 
   render() {
-console.log('user props', this.props.user)
-      
+    console.log('user props', this.props.user)
+
     return (
       <View>
         <Text>Les utilisateurs</Text>
-      {/*   <Button title="Find Users" onPress={this.props.getUser} /> */}
-         <FlatList
-                    data={this.props.user}
-                    renderItem={({item}) => <Text>{item.last_name}</Text>}/>
+        {/*   <Button title="Find Users" onPress={this.props.getUser} /> */}
+        <FlatList
+          data={this.props.user}
+          renderItem={({ item }) => <Text>{item.last_name}</Text>} />
       </View>
     );
   }
 }
 
 const mapStateToProps = state => {
-    console.log(state)
+  console.log(state)
   return {
     user: state.userReducer.user
   };
