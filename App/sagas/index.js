@@ -4,6 +4,7 @@ import { getTest } from './applicationSaga'
 import { GET_POSTS_REQUEST } from '../redux/reducers/homeReducer'
 import { getPostSaga } from './homeSaga'
 import { CONVERSATION_GET_REQUEST } from '../redux/reducers/conversationReducer'
+import { MY_ACCOUNT_GET_REQUEST } from '../redux/reducers/myAccountReducer'
 import { SESSION_GET_REQUEST } from '../redux/reducers/sessionReducer'
 import { SIGNUP_GET_REQUEST } from '../redux/reducers/signupReducer'
 import { conversationGet } from './conversationSaga'
@@ -16,6 +17,7 @@ import { sessionGet } from './sessionSaga'
 import { signUpGet } from './signupSaga'
 import { GET_COMMENTS_REQUEST } from '../redux/reducers/commentsReducer'
 import { getCommentsSaga } from './commentsSaga'
+import {accountGetSaga} from './accountSaga' 
 
 export default function * rootSaga () {
   yield all([
@@ -27,8 +29,8 @@ export default function * rootSaga () {
     takeLatest(USER_GET_REQUEST,userGet),
     takeLatest(GET_MESSAGES_REQUEST, getMessagesSaga),
     takeLatest(POST_MESSAGE_REQUEST, postMessageSaga),
-    takeLatest(SESSION_GET_REQUEST, sessionGet),
     takeLatest(GET_COMMENTS_REQUEST, getCommentsSaga),
+    takeLatest(MY_ACCOUNT_GET_REQUEST,accountGetSaga)
   ])
 }
 

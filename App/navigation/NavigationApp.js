@@ -9,6 +9,7 @@ import UserContainer from '../containers/UserContainer';
 import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import ChatContainer from "../containers/ChatContainer";
+import MyAccountContainer from "../containers/MyAccountContainer";
 
 const AppNavigator = createStackNavigator({
     Login: {
@@ -68,6 +69,12 @@ const HomeNavigator = createStackNavigator({
         screen: HomeContainer,
         navigationOptions: {
             title: "Fil d'actualité"
+        }
+    },
+    MyAccount:{
+        screen: MyAccountContainer,
+        navigationOptions:{
+            title:"Mon Compte"
         }
     },
     Commentdetail: {
