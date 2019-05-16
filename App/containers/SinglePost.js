@@ -30,27 +30,32 @@ class SinglePost extends Component {
     }
 
     displayComments = () => {
-        return( (this.props.comments.length > 0) ?
-            (<View>
-                {
-                    this.props.comments.map((item) => (
-                        <ListItem
-                            key={item.id}
-                            leftAvatar={{ source: { uri: item.owner.avatar_thumb } }}
-                            title={item.owner.first_name}
-                            subtitle={item.text}
-                        />
-                    ))
+        if (this.props.comments.length > 0) {
+            for (let i = 0; i < this.props.comments.length; i++) {
+                if (this.props.comments[i].post_id == this.props.post.id) {
+                    return (
+                        <View>
+                            {
+                                this.props.comments.map((item) => (
+                                    <ListItem
+                                        key={item.id}
+                                        leftAvatar={{ source: { uri: item.owner.avatar_thumb } }}
+                                        title={item.owner.first_name}
+                                        subtitle={item.text}
+                                    />
+                                ))
+                            }
+                        </View>
+                    )
+                } else {
+                    <Text>Soyez le premier à écrire un commentaire</Text >
                 }
-            </View>)
-            :
-            (<View>
-                <Text>Soyez le premier à écrire un commentaire</Text>
-            </View>)
-        )
+            }
+        }
     }
 
     showComments = () => {
+        console.log("this.props", this.props)
         console.log("this.props.comments", this.props.comments)
         //{this.props.comments[0].text}
         const commentsShow = (this.props.comments.length > 0) ? <View>{this.displayComments()}</View> : <Text></Text>
@@ -63,7 +68,6 @@ class SinglePost extends Component {
     }
 
     render() {
-        console.log("this.props", this.props)
         const { post } = this.props
         const uriAvatar = post ? post.owner.avatar : imgBase
         const avatar = <Avatar rounded source={{ uri: uriAvatar }} containerStyle={styles.singlePostAvatar} />
@@ -121,7 +125,6 @@ class SinglePost extends Component {
 
 /**********************************************************/
 mapStateToProps = (state) => {
-    console.log("state.comments ", state.comments)
     return {
         comments: state.comments.comments
     }
