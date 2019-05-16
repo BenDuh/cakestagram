@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Avatar, Image, Card } from 'react-native-elements';
+import { Avatar, Image, Card, ListItem } from 'react-native-elements';
 //import des icons de font-awesome
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import styles from '../theme/styles';
@@ -26,26 +26,48 @@ class SinglePost extends Component {
     }
 
     clickLike = () => {
-        
+
     }
 
     displayComments = () => {
-        
+        if (this.props.comments.length > 0) {
+            for (let i = 0; i < this.props.comments.length; i++) {
+                if (this.props.comments[i].post_id == this.props.post.id) {
+                    return (
+                        <View>
+                            {
+                                this.props.comments.map((item) => (
+                                    <ListItem
+                                        key={item.id}
+                                        leftAvatar={{ source: { uri: item.owner.avatar_thumb } }}
+                                        title={item.owner.first_name}
+                                        subtitle={item.text}
+                                    />
+                                ))
+                            }
+                        </View>
+                    )
+                } else {
+                    <Text>Soyez le premier à écrire un commentaire</Text >
+                }
+            }
+        }
     }
 
     showComments = () => {
-        console.log("this.props.posts", this.props.posts)
-        const cookie = (this.props.comments.length > 0) ? <Text>{this.props.comments[0].text}</Text> : <Text></Text>
+        console.log("this.props", this.props)
+        console.log("this.props.comments", this.props.comments)
+        //{this.props.comments[0].text}
+        const commentsShow = (this.props.comments.length > 0) ? <View>{this.displayComments()}</View> : <Text></Text>
         return (
             <View>
                 <Text>Commentaires de la photo :</Text>
-                {cookie}
+                {commentsShow}
             </View>
         )
     }
 
     render() {
-        console.log("this.props", this.props)
         const { post } = this.props
         const uriAvatar = post ? post.owner.avatar : imgBase
         const avatar = <Avatar rounded source={{ uri: uriAvatar }} containerStyle={styles.singlePostAvatar} />
@@ -57,7 +79,7 @@ class SinglePost extends Component {
 
         const dateCreation = post ? moment(post.created_at).calendar() : "Date"
 
-        const like = post.likes_count ?
+        const like = post.likes_by_me ?
             <Icon
                 name="heart"
                 type="font-awesome"
@@ -101,9 +123,8 @@ class SinglePost extends Component {
 }
 
 
-/********* TEST *********/
+/**********************************************************/
 mapStateToProps = (state) => {
-    console.log("state.comments ", state.comments)
     return {
         comments: state.comments.comments
     }
@@ -114,7 +135,6 @@ mapDispatchToProps = (dispatch) => {
         getCommentsRequest: (myId) => dispatch(getCommentsRequest(myId))
     }
 }
-/********* FIN TEST *********/
 
 //export default SinglePost;
 export default connect(mapStateToProps, mapDispatchToProps)(SinglePost);
