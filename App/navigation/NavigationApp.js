@@ -13,7 +13,7 @@ const AppNavigator = createStackNavigator({
         screen: LoginContainer,
         navigationOptions: {
             title: 'Login'
-        }
+        },
     },
     Signup: {
         screen: SignupContainer,
@@ -36,13 +36,13 @@ const HomeNavigator = createStackNavigator({
     Home: {
         screen: HomeContainer,
         navigationOptions: {
-            title: 'Home'
+            title: "Fil d'actualité"
         }
     },
     Commentdetail: {
         screen: SinglePostDetails,
         navigationOptions: {
-            title: 'Post Details'
+            title: 'Commentaires du post'
         }
     },
     Conversation: {
