@@ -36,7 +36,7 @@ class SinglePost extends Component {
             <Icon
                 name="heart"
                 type="font-awesome"
-                style={{ margin: 5 }}
+                style={{ margin: 10 }}
                 size={20}
                 regular
                 onPress={this.clickLike} />
@@ -44,15 +44,15 @@ class SinglePost extends Component {
             <Icon
                 name="heart"
                 type="font-awesome"
-                style={{ margin: 5 }}
+                style={{ margin: 10 }}
                 size={20}
                 solid
                 onPress={this.clickLike} />
 
         const comment = post.comments_count ?
-            <Icon name="comment" type="font-awesome" style={{ margin: 5 }} size={20} solid onPress={this.goToSinglePostDetail} />
+            <Icon name="comment" type="font-awesome" style={{ margin: 10 }} size={20} solid onPress={this.goToSinglePostDetail} />
             :
-            <Icon name="comment" type="font-awesome" style={{ margin: 5 }} size={20} regular onPress={this.goToSinglePostDetail} />
+            <Icon name="comment" type="font-awesome" style={{ margin: 10 }} size={20} regular onPress={this.goToSinglePostDetail} />
 
         return (
             <Card>

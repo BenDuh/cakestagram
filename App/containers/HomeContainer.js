@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { FlatList, View, Button } from 'react-native'
+import { FlatList, View } from 'react-native'
 import SinglePost from './SinglePost';
 import { getPostRequest } from '../redux/reducers/homeReducer'
 //APISAUCE
 import { connect } from 'react-redux';
+import { Button } from 'react-native-elements';
 
 class HomeContainer extends Component {
     componentDidMount() {
@@ -20,7 +21,14 @@ class HomeContainer extends Component {
         return (
             // SI ON A LE TEMPS OPTIMISER AVEC scrollToItem() et getItemLayout
             <View>
-                <Button title='Go to conversation' onPress={() => this.props.navigation.navigate('Conversation')} />
+                <View style={{ alignItems: 'center' }}>
+                    <Button
+                        title='Go to conversation'
+                        onPress={() => this.props.navigation.navigate('Conversation')}
+                        buttonStyle={{ backgroundColor: '#2bcbba', width: 200, marginBottom: 20}}
+                    />
+                </View>
+
                 <FlatList
                     data={this.props.posts.reverse()}
                     keyExtractor={(item) => `${item.id}`}
