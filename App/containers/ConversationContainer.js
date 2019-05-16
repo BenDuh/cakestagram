@@ -27,7 +27,7 @@ class ConversationContainer extends Component {
           renderItem={({ item }) =>
             <Button
               title={item.id ? item.id.toString() : 'Pas de conversation'}
-              onPress={item.id ? () => navigation.navigate('Chat', { conversationId: item.id }) : console.log('Clique pas, il y a pas de conv')}
+              onPress={item.id ? () => navigation.navigate('Chat', { conversation: item }) : console.log('Clique pas, il y a pas de conv')}
               buttonStyle={{ backgroundColor: '#2bcbba', width: 200, marginBottom: 20 }}
             />
           }
