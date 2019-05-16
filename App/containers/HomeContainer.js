@@ -27,6 +27,11 @@ class HomeContainer extends Component {
                         onPress={() => this.props.navigation.navigate('Conversation')}
                         buttonStyle={{ backgroundColor: '#2bcbba', width: 200, marginBottom: 20}}
                     />
+                    <Button
+                        title='Go to My Account'
+                        onPress={() => this.props.navigation.navigate('MyAccount')}
+                        buttonStyle={{ backgroundColor: '#2bcbba', width: 200, marginBottom: 20}}
+                    />
                 </View>
 
                 <FlatList
