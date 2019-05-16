@@ -7,6 +7,7 @@ import ConversationContainer from "../containers/ConversationContainer";
 import SignupContainer from "../containers/SignupContainer";
 import UserContainer from '../containers/UserContainer';
 import ChatContainer from "../containers/ChatContainer";
+import MyAccountContainer from "../containers/MyAccountContainer";
 
 const AppNavigator = createStackNavigator({
     Login: {
@@ -37,6 +38,12 @@ const HomeNavigator = createStackNavigator({
         screen: HomeContainer,
         navigationOptions: {
             title: "Fil d'actualité"
+        }
+    },
+    MyAccount:{
+        screen: MyAccountContainer,
+        navigationOptions:{
+            title:"Mon Compte"
         }
     },
     Commentdetail: {
