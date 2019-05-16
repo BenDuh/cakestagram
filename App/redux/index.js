@@ -3,11 +3,12 @@ import myCreateStore from './createStore'
 import rootSaga from '../sagas'
 import { reducer } from './reducers/applicationReducer'
 import { homeReducer as home } from './reducers/homeReducer'
-import {conversationReducer} from './reducers/conversationReducer'
-import {userReducer} from './reducers/userReducer'
+import { conversationReducer } from './reducers/conversationReducer'
+import { userReducer } from './reducers/userReducer'
 import { chatReducer as chat } from './reducers/chatReducer'
-import {sessionReducer} from './reducers/sessionReducer'
-import {signupReducer} from './reducers/signupReducer'
+import { sessionReducer } from './reducers/sessionReducer'
+import { signupReducer } from './reducers/signupReducer'
+import { commentsReducer as comments } from './reducers/commentsReducer'
 
 
 export const rootReducer = combineReducers({
@@ -18,7 +19,8 @@ export const rootReducer = combineReducers({
   signupReducer,
   userReducer,
   chat,
-  sessionReducer
+  sessionReducer,
+  comments,
 })
 
 export default myCreateStore(rootReducer, rootSaga)
