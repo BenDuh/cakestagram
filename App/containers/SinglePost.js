@@ -5,13 +5,23 @@ import { Avatar, Image, Card } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import styles from '../theme/styles';
 import moment from 'moment' // Pour formatter les dates
+/********* TEST *********/
+import { connect } from 'react-redux';
+import { getCommentsRequest } from '../redux/reducers/commentsReducer'
+/********* FIN TEST *********/
+
 
 const imgBase = "https://news.nationalgeographic.com/content/dam/news/2018/05/17/you-can-train-your-cat/02-cat-training-NationalGeographic_1484324.ngsversion.1526587209178.adapt.1900.1.jpg";
 
 class SinglePost extends Component {
+    componentDidMount() {
+        const myId = this.props.post.id
+        console.log("componentDidMount", myId)
+        this.props.getCommentsRequest(myId);
+    }
+
     goToSinglePostDetail = (post) => {
         post = this.props.post
-        console.log("COOKIE", post)
         this.props.navigation.navigate('Commentdetail', { post })
     }
 
@@ -19,10 +29,25 @@ class SinglePost extends Component {
         
     }
 
+    displayComments = () => {
+        
+    }
+
+    showComments = () => {
+        console.log("this.props.posts", this.props.posts)
+        const cookie = (this.props.comments.length > 0) ? <Text>{this.props.comments[0].text}</Text> : <Text></Text>
+        return (
+            <View>
+                <Text>Commentaires de la photo :</Text>
+                {cookie}
+            </View>
+        )
+    }
+
     render() {
-        console.log("props render single post", this.props)
+        console.log("this.props", this.props)
         const { post } = this.props
-        const uriAvatar = post ? this.props.post.owner.avatar : imgBase
+        const uriAvatar = post ? post.owner.avatar : imgBase
         const avatar = <Avatar rounded source={{ uri: uriAvatar }} containerStyle={styles.singlePostAvatar} />
 
         const uri = post ? post.thumb : imgBase
@@ -68,7 +93,7 @@ class SinglePost extends Component {
                     {like}
                     {comment}
                 </View>
-                {this.props.withComments ? <Text>Afficher les commentaires</Text> : <Text></Text>}
+                {this.props.withComments ? this.showComments() : <Text></Text>}
             </Card>
 
         );
@@ -76,4 +101,20 @@ class SinglePost extends Component {
 }
 
 
-export default SinglePost;
+/********* TEST *********/
+mapStateToProps = (state) => {
+    console.log("state.comments ", state.comments)
+    return {
+        comments: state.comments.comments
+    }
+}
+
+mapDispatchToProps = (dispatch) => {
+    return {
+        getCommentsRequest: (myId) => dispatch(getCommentsRequest(myId))
+    }
+}
+/********* FIN TEST *********/
+
+//export default SinglePost;
+export default connect(mapStateToProps, mapDispatchToProps)(SinglePost);

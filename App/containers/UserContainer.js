@@ -15,22 +15,26 @@ class UserContainer extends Component {
     } */
 
   render() {
-    console.log('user props', this.props.user)
-
+    const{ navigation, user }= this.props
     return (
       <View>
         <Text>Les utilisateurs</Text>
         {/*   <Button title="Find Users" onPress={this.props.getUser} /> */}
         <FlatList
-          data={this.props.user}
+          data={user}
           renderItem={({ item }) => <Text>{item.last_name}</Text>} />
+          <Button
+          title="oui"
+    onPress={() => navigation.navigate('Chat')}
+    buttonStyle={{ backgroundColor: '#2bcbba', width: 200, marginBottom: 20 }}
+/>
       </View>
     );
   }
 }
 
 const mapStateToProps = state => {
-  console.log(state)
+   
   return {
     user: state.userReducer.user
   };

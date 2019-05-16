@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 
 class HomeContainer extends Component {
+    
     componentDidMount() {
         this.props.getPostRequest();
     }
