@@ -4,6 +4,7 @@ const INITIAL_STATE = {
 
 export const SIGNUP_GET = 'SIGNUP_GET'
 export const SIGNUP_GET_REQUEST = 'SIGNUP_GET_REQUEST'
+export const SIGNUP_GET_ERROR = 'SIGNUP_GET_ERROR'
 
 export const getSignup= () =>{
     return { 
@@ -19,6 +20,12 @@ export const getSignupRequest = (e) =>{
         }   
     }
 }
+export const getSignupError = () =>{
+    return { 
+        type: SIGNUP_GET_ERROR,
+        error
+    }
+}
 
 export const signupReducer = (state = INITIAL_STATE, action) => {
     console.log(state)
@@ -27,6 +34,12 @@ export const signupReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 fetching: true
+            }
+        case SIGNUP_GET_ERROR:
+            return {
+                ...state,
+                fetching: false,
+                error: action.error
             }
         case  SIGNUP_GET :
             return {
