@@ -38,6 +38,7 @@ class ChatContainer extends Component {
         <View style={{ flex: 1 }}>
           {messages &&
           <FlatList
+            inverted={true}
             data={messages}
             renderItem={({ item }) => <Message message={item} />}
             keyExtractor={(item) => `${item.id}`}
