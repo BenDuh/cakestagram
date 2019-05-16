@@ -89,10 +89,10 @@ const HomeNavigator = createStackNavigator({
             title: 'Users'
         }
     }
-}, {
+    }, {
         initialRouteName: 'Home',
         headerLayoutPreset: 'center',
-    })
+})
 
 const TabNavigator =  createBottomTabNavigator({
         Home: HomeNavigator,
