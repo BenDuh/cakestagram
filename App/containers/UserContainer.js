@@ -19,10 +19,10 @@ class UserContainer extends Component {
     return (
       <View>
         <Text>Les utilisateurs</Text>
-      {/*   <Button title="Find Users" onPress={this.props.getUser} /> */}
-         <FlatList
-                    data={this.props.user}
-                    renderItem={({item}) => <Text>{item.last_name}</Text>}/>
+        {/*   <Button title="Find Users" onPress={this.props.getUser} /> */}
+        <FlatList
+          data={this.props.user}
+          renderItem={({ item }) => <Text>{item.last_name}</Text>} />
       </View>
     );
   }
