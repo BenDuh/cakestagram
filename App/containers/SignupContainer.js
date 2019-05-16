@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, KeyboardAvoidingView } from 'react-native'
+import { View, KeyboardAvoidingView, StyleSheet, Text } from 'react-native'
 import { Header } from 'react-navigation';
 import Form from '../components/form'
 import MyInput from '../components/myInput'
@@ -19,11 +19,10 @@ const INITIAL_VALUES = {
 class SignupContainer extends Component {
     onSubmit = (e) => {
         this.props.getSignup(e)
-        //this.props.navigation.navigate('Home') A FAIRE DANS LA SAGA AVC NAV TOP LVL
     }
 
     render() {
-        console.log(this.props)
+        console.log('error', this.props.error)
         return (
             <KeyboardAvoidingView style={{ flex: 1, backgroundColor: '#2bcbba', paddingHorizontal: 15 }} behavior="padding" keyboardVerticalOffset={Header.HEIGHT + 40}>
                 <View>
@@ -39,6 +38,11 @@ class SignupContainer extends Component {
                                         <MyInput label="Prénom" placeHolder="Entrez votre prénom" name="prenom" type="text" />
                                         <MyInput label="Email" placeHolder="Entrez votre email" name="email" type="email" />
                                         <MyInput label="password" placeHolder="Entrez votre password" name="password" type="password" />
+                                        {this.props.error != '' &&
+                                            <View style={styles.error}>
+                                                <Text style={styles.errorText}>{this.props.error}</Text>
+                                            </View>
+                                        }
                                         <View style={{alignItems: 'center', marginTop: 20}}>
                                             <Button
                                                 title="Créer votre compte"
@@ -61,11 +65,25 @@ class SignupContainer extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        error: state.signupReducer.error
     }
 }
 const mapDispatchToProps = {
     getSignup: getSignupRequest
 }
+
+const styles = StyleSheet.create({
+    error: {
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 13
+    },
+    errorText: {
+        color: 'red',
+        fontSize: 16
+    }
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupContainer);
