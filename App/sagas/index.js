@@ -9,8 +9,9 @@ import { SIGNUP_GET_REQUEST } from '../redux/reducers/signupReducer'
 import { conversationGet } from './conversationSaga'
 import { USER_GET_REQUEST } from '../redux/reducers/userReducer';
 import {userGet} from './userSaga'
-import { GET_MESSAGES_REQUEST } from '../redux/reducers/chatReducer';
+import { GET_MESSAGES_REQUEST, POST_MESSAGE_REQUEST } from '../redux/reducers/chatReducer';
 import { getMessagesSaga } from './chatSaga'
+import { postMessageSaga } from './chatSaga'
 import { sessionGet } from './sessionSaga'
 import { signUpGet } from './signupSaga'
 
@@ -23,6 +24,7 @@ export default function * rootSaga () {
     takeLatest(SIGNUP_GET_REQUEST, signUpGet),
     takeLatest(USER_GET_REQUEST,userGet),
     takeLatest(GET_MESSAGES_REQUEST, getMessagesSaga),
+    takeLatest(POST_MESSAGE_REQUEST, postMessageSaga),
     takeLatest(SESSION_GET_REQUEST, sessionGet)
   ])
 }

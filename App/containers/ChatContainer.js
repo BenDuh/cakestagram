@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, FlatList } from 'react-native'
-import { getMessagesRequest, getMessages } from '../redux/reducers/chatReducer'
+import { getMessagesRequest, getMessages, postMessage } from '../redux/reducers/chatReducer'
 import { connect } from 'react-redux'
 
 import { Formik } from 'formik'
@@ -13,20 +13,27 @@ import Message from '../components/Message'
 class ChatContainer extends Component {
   // Va chercher l'id de la conversation dans les paramètres de navigation, puis get les messages
   componentDidMount() {
-    const conversationId = this.props.navigation.getParam('conversationId', null)
-    this.props.getMessagesRequest(conversationId)
+    this.conversationId = this.props.navigation.getParam('conversationId', null)
+    this.props.getMessagesRequest(this.conversationId)
+
+    // TEMPORAIRE EN ATTENDANT DE FAIRE LA CONVERSATION INSTANTANÉE
+    this.getMessagesInterval = setInterval(() => this.props.getMessagesRequest(this.conversationId), 3000)
   }
 
   // Supprime les messages du store, sinon quand on va sur une autre discussion on voit brievement ces messages
   // / ! \ Du coup quand on fait "retour" il y a un truc qui s'affiche brièvement
   componentWillUnmount() {
     this.props.deleteMessages()
+
+    // TEMPORAIRE EN ATTENDANT DE FAIRE LA CONVERSATION INSTANTANÉE
+    clearInterval(this.getMessagesInterval)
   }
 
   // Envoi un message
-  onSubmit = (e) => {
+  onSubmit = (e, { resetForm }) => {
     const { text } = e
-    console.log(text)
+    this.props.postMessage(this.conversationId, text)
+    resetForm()
   }
 
   render() {
@@ -87,7 +94,8 @@ mapStateToProps = (state) => {
 mapDispatchToProps = (dispatch) => {
   return {
     getMessagesRequest: (conversationId) => dispatch(getMessagesRequest(conversationId)),
-    deleteMessages: () => dispatch(getMessages(null))
+    deleteMessages: () => dispatch(getMessages(null)),
+    postMessage: (conversationId, text) => dispatch(postMessage(conversationId, text))
   }
 }
 
