@@ -25,8 +25,8 @@ render() {
     renderItem={
       ({item}) => 
       <Text containerStyle={{ position: 'absolute', top: -4, right: -4 }}>
-      {item.user.last_name} 
-      {item.last_message.text}
+      {/* {item.user.last_name} 
+      {item.last_message.text} */}
 </Text>}
   />
 
