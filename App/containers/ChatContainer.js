@@ -7,28 +7,48 @@ import { Formik } from 'formik'
 import Form from '../components/form'
 import ChatInput from '../components/ChatInput'
 import Icon from 'react-native-vector-icons/dist/FontAwesome5'
-
+/****
+ * 
+ * IL Y A UN BUG : QUAND ON ENVOI UN MESSAGE DANS UNE NOUVELLE CONVERSATION
+ * - LE MESSAGE EST BIEN EN ENVOYÉ ET LA CONVERSATION CREEE
+ * - MAIS MESSAGE D'ERREUR CANNOT FIND PROPERTY USER OF UNDEFINED
+ * 
+ */
 import Message from '../components/Message'
 
 class ChatContainer extends Component {
   // Va chercher l'id de la conversation dans les paramètres de navigation, puis get les messages
   componentDidMount() {
     this.conversation = this.props.navigation.getParam('conversation', null)
-    this.props.getMessagesRequest(this.conversation.id)
-    console.log('CONVERSATION in ChatContainer', this.conversation)
+    this.user = this.props.navigation.getParam('user', null)
+    
+    this.user_id = this.conversation ? this.conversation.user.id : this.user.id
+
+    if (this.conversation) this.props.getMessagesRequest(this.user_id)
+
 
     // TEMPORAIRE EN ATTENDANT DE FAIRE LA CONVERSATION INSTANTANÉE
-    // this.getMessagesInterval = setInterval(() => this.props.getMessagesRequest(this.conversationId), 3000)
+    this.getMessagesInterval = setInterval(() => this.props.getMessagesRequest(this.user_id), 3000)
   }
 
-  static navigationOptions = ({ navigation }) => {
+/*   static navigationOptions = ({ navigation }) => {
     const conversation = navigation.getParam('conversation', null)
     const user = conversation ? conversation.user : null
 
     return {
       title: user ? `${user.first_name} ${user.last_name}` : ''
     };
-  };
+  };  */
+
+  static navigationOptions =({navigation})=>{
+    const conversation = navigation.getParam('conversation', null)
+    const user = navigation.getParam('user', null)
+
+    const first_name = conversation ? conversation.user.first_name : user.first_name
+    console.log('est-ce qu on arrive là ?')
+    return {title: first_name}
+  }
+
 
   // Supprime les messages du store, sinon quand on va sur une autre discussion on voit brievement ces messages
   // / ! \ Du coup quand on fait "retour" il y a un truc qui s'affiche brièvement
@@ -36,13 +56,13 @@ class ChatContainer extends Component {
     this.props.deleteMessages()
 
     // TEMPORAIRE EN ATTENDANT DE FAIRE LA CONVERSATION INSTANTANÉE
-    // clearInterval(this.getMessagesInterval)
+    clearInterval(this.getMessagesInterval)
   }
 
   // Envoi un message
   onSubmit = (e, { resetForm }) => {
     const { text } = e
-    this.props.postMessage(this.conversationId, text)
+    this.props.postMessage(this.user_id, text)
     resetForm()
   }
 
@@ -112,9 +132,9 @@ mapStateToProps = (state) => {
 
 mapDispatchToProps = (dispatch) => {
   return {
-    getMessagesRequest: (conversationId) => dispatch(getMessagesRequest(conversationId)),
+    getMessagesRequest: (user_id) => dispatch(getMessagesRequest(user_id)),
     deleteMessages: () => dispatch(getMessages(null)),
-    postMessage: (conversationId, text) => dispatch(postMessage(conversationId, text))
+    postMessage: (user_id, text) => dispatch(postMessage(user_id, text))
   }
 }
 
