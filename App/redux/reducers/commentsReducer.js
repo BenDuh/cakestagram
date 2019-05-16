@@ -28,9 +28,8 @@ export const commentsReducer = (state = INITIAL_STATE, action) => {
         case GET_COMMENTS:
             return {
                 ...state,
-                comments: [...state.comments, ...(action.payload.comments)]
+                comments: [...(action.payload.comments)]
             }
-    
         default:
             return state
     }
