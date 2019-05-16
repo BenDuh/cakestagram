@@ -28,9 +28,9 @@ export default function * rootSaga () {
     takeLatest(SIGNUP_GET_REQUEST, signUpGet),
     takeLatest(USER_GET_REQUEST,userGet),
     takeLatest(GET_MESSAGES_REQUEST, getMessagesSaga),
-    takeLatest(POST_MESSAGE_REQUEST, postMessageSaga),
     takeLatest(GET_COMMENTS_REQUEST, getCommentsSaga),
-    takeLatest(MY_ACCOUNT_GET_REQUEST,accountGetSaga)
+    takeLatest(MY_ACCOUNT_GET_REQUEST,accountGetSaga),
+    takeLatest(POST_MESSAGE_REQUEST, postMessageSaga),
   ])
 }
 
