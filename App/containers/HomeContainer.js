@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 
 class HomeContainer extends Component {
+    
     componentDidMount() {
         this.props.getPostRequest();
     }
@@ -25,6 +26,11 @@ class HomeContainer extends Component {
                     <Button
                         title='Go to conversation'
                         onPress={() => this.props.navigation.navigate('Conversation')}
+                        buttonStyle={{ backgroundColor: '#2bcbba', width: 200, marginBottom: 20}}
+                    />
+                    <Button
+                        title='Go to My Account'
+                        onPress={() => this.props.navigation.navigate('MyAccount')}
                         buttonStyle={{ backgroundColor: '#2bcbba', width: 200, marginBottom: 20}}
                     />
                 </View>

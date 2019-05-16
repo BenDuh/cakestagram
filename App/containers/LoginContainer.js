@@ -13,7 +13,7 @@ import { Button } from 'react-native-elements';
 
 const INITIAL_VALUES = {
     email: 'test@test.fr',
-    password: ''
+    password: 'monkey75'
 }
 class LoginContainer extends Component {
     onSubmit = (e) => {

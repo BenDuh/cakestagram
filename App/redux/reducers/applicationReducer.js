@@ -17,6 +17,7 @@ export const testAppRequest = () =>{
   }
 
 export const reducer = (state = INITIAL_STATE, action) => {
+
     switch (action.type) {
         case APPLICATION_ACTION:
             return {...state,boss:action.boss}
