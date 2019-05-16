@@ -7,13 +7,7 @@ import { Formik } from 'formik'
 import Form from '../components/form'
 import ChatInput from '../components/ChatInput'
 import Icon from 'react-native-vector-icons/dist/FontAwesome5'
-/****
- * 
- * IL Y A UN BUG : QUAND ON ENVOI UN MESSAGE DANS UNE NOUVELLE CONVERSATION
- * - LE MESSAGE EST BIEN EN ENVOYÉ ET LA CONVERSATION CREEE
- * - MAIS MESSAGE D'ERREUR CANNOT FIND PROPERTY USER OF UNDEFINED
- * 
- */
+
 import Message from '../components/Message'
 
 class ChatContainer extends Component {
@@ -44,8 +38,12 @@ class ChatContainer extends Component {
     const conversation = navigation.getParam('conversation', null)
     const user = navigation.getParam('user', null)
 
+    // console.log('conversation & user & first_name dans navigationOptions dans ChatContainer')
+    // console.log(conversation)
+    // console.log(user)
+
     const first_name = conversation ? conversation.user.first_name : user.first_name
-    console.log('est-ce qu on arrive là ?')
+    console.log(first_name)
     return {title: first_name}
   }
 
@@ -69,7 +67,7 @@ class ChatContainer extends Component {
   // Render d'un message de la Flatlist
   renderMessage = (item) => {
     const id = item.user.id
-    const textAlign = id === this.conversation.user.id ? 'left' : 'right'
+    const textAlign = id === this.user_id ? 'left' : 'right'
     return (
       <Message message={item} textAlign={textAlign} />
     )
