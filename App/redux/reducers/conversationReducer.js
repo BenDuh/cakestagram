@@ -11,13 +11,14 @@ const INITIAL_STATE = {
           conversation
       }
     }
+
 export const getConvRequest = () =>{
         return { 
             type: CONVERSATION_GET_REQUEST, 
         }
       } 
     
-    export const conversationReducer = (state = INITIAL_STATE, action) => {
+export const conversationReducer = (state = INITIAL_STATE, action) => {
         switch (action.type) {
             case  CONVERSATION_GET :
                 return {...state, conversation:action.conversation}          
