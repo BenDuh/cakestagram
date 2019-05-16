@@ -13,12 +13,22 @@ import Message from '../components/Message'
 class ChatContainer extends Component {
   // Va chercher l'id de la conversation dans les paramètres de navigation, puis get les messages
   componentDidMount() {
-    this.conversationId = this.props.navigation.getParam('conversationId', null)
-    this.props.getMessagesRequest(this.conversationId)
+    this.conversation = this.props.navigation.getParam('conversation', null)
+    this.props.getMessagesRequest(this.conversation.id)
+    console.log('CONVERSATION in ChatContainer', this.conversation)
 
     // TEMPORAIRE EN ATTENDANT DE FAIRE LA CONVERSATION INSTANTANÉE
-    this.getMessagesInterval = setInterval(() => this.props.getMessagesRequest(this.conversationId), 3000)
+    // this.getMessagesInterval = setInterval(() => this.props.getMessagesRequest(this.conversationId), 3000)
   }
+
+  static navigationOptions = ({ navigation }) => {
+    const conversation = navigation.getParam('conversation', null)
+    const user = conversation ? conversation.user : null
+
+    return {
+      title: user ? `${user.first_name} ${user.last_name}` : ''
+    };
+  };
 
   // Supprime les messages du store, sinon quand on va sur une autre discussion on voit brievement ces messages
   // / ! \ Du coup quand on fait "retour" il y a un truc qui s'affiche brièvement
@@ -26,7 +36,7 @@ class ChatContainer extends Component {
     this.props.deleteMessages()
 
     // TEMPORAIRE EN ATTENDANT DE FAIRE LA CONVERSATION INSTANTANÉE
-    clearInterval(this.getMessagesInterval)
+    // clearInterval(this.getMessagesInterval)
   }
 
   // Envoi un message
@@ -34,6 +44,15 @@ class ChatContainer extends Component {
     const { text } = e
     this.props.postMessage(this.conversationId, text)
     resetForm()
+  }
+
+  // Render d'un message de la Flatlist
+  renderMessage = (item) => {
+    const id = item.user.id
+    const textAlign = id === this.conversation.user.id ? 'left' : 'right'
+    return (
+      <Message message={item} textAlign={textAlign} />
+    )
   }
 
   render() {
@@ -47,7 +66,7 @@ class ChatContainer extends Component {
           <FlatList
             inverted={true}
             data={messages}
-            renderItem={({ item }) => <Message message={item} />}
+            renderItem={({ item }) => this.renderMessage(item)}
             keyExtractor={(item) => `${item.id}`}
           />}
         </View>

@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-    conversation:["Vous n'avez pas de conversation"]
+    conversation:[]
     }
     
     export const CONVERSATION_GET = 'CONVERSATION_GET'
@@ -11,13 +11,14 @@ const INITIAL_STATE = {
           conversation
       }
     }
+
 export const getConvRequest = () =>{
         return { 
             type: CONVERSATION_GET_REQUEST, 
         }
       } 
     
-    export const conversationReducer = (state = INITIAL_STATE, action) => {
+export const conversationReducer = (state = INITIAL_STATE, action) => {
         switch (action.type) {
             case  CONVERSATION_GET :
                 return {...state, conversation:action.conversation}          

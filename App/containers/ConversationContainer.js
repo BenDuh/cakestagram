@@ -4,44 +4,44 @@ import { connect } from "react-redux";
 import { getConvRequest } from "../redux/reducers/conversationReducer";
 import { FlatList } from "react-native-gesture-handler";
 import { Button } from 'react-native-elements';
+import ListConversation from '../components/ListConversation'
+
 
 class ConversationContainer extends Component {
   componentDidMount() {
     this.props.getConv();
-  }
-  /*     toLogin = () =>{
-        this.props.navigation.navigate('Login')
-    } */
-
-  render() {
-    console.log("conversation props", this.props.conversation);
-    console.log("autre", this.props.last_message);
-    const { navigation } = this.props
-
-    return (
-      <View style={{ alignItems: 'center'}}>
-        <Text>Conversations</Text>
-
-        <FlatList
-          data={this.props.conversation}
-          renderItem={({ item }) =>
-            <Button
-              title={item.id ? item.id.toString() : 'Pas de conversation'}
-              onPress={item.id ? () => navigation.navigate('Chat', { conversationId: item.id }) : console.log('Clique pas, il y a pas de conv')}
-              buttonStyle={{ backgroundColor: '#2bcbba', width: 200, marginBottom: 20 }}
-            />
-          }
-        />
-
-        <Button
-          title='New conversation'
-          onPress={() => navigation.navigate('Users')}
-          buttonStyle={{ backgroundColor: '#2bcbba', width: 200, marginBottom: 20 }}
-        />
-      </View>
-    );
-  }
 }
+
+render() {
+  const{ navigation, conversation }= this.props
+  console.log("requette", this.props)
+
+  return (
+    <View>
+    <FlatList
+    //necessaire key avec tostring car string attendu
+    keyExtractor={(item)=>(item.id).toString()}
+    data={conversation}
+    renderItem={
+      ({item}) => 
+      <Text containerStyle={{ position: 'absolute', top: -4, right: -4 }}>
+      {item.user.last_name} 
+      {item.last_message.text}
+</Text>}
+  />
+
+  <Button
+  title='New conversation'
+  onPress={() => navigation.navigate('Users')}
+  buttonStyle={{ backgroundColor: '#2bcbba', width: 200, marginBottom: 20 }}
+/>
+</View>
+  );
+}
+}
+
+
+
 
 const mapStateToProps = state => {
   return {
@@ -51,6 +51,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   getConv: getConvRequest
 };
+
 
 export default connect(
   mapStateToProps,

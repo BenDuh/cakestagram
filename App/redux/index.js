@@ -22,7 +22,7 @@ export const rootReducer = combineReducers({
   chat,
   sessionReducer,
   comments,
-  myAccountReducer,
+  myAccountReducer
 })
 
 export default myCreateStore(rootReducer, rootSaga)
