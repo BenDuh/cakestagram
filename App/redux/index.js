@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
 import myCreateStore from './createStore'
 import rootSaga from '../sagas'
-import { reducer } from './reducers/applicationReducer'
 import { homeReducer as home } from './reducers/homeReducer'
 import { conversationReducer } from './reducers/conversationReducer'
 import { userReducer } from './reducers/userReducer'
@@ -14,7 +13,6 @@ import {postReducer} from './reducers/postReducer'
 
 
 export const rootReducer = combineReducers({
-  reducer,
   home,
   conversationReducer,
   sessionReducer,

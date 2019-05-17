@@ -1,6 +1,5 @@
 import { createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator, TabBarBottom } from "react-navigation"
 import LoginContainer from "../containers/LoginContainer";
-import TestContainer from "../containers/TestContainer";
 import HomeContainer from "../containers/HomeContainer";
 import SinglePostDetails from "../containers/SinglePostDetails";
 import ConversationContainer from "../containers/ConversationContainer";
@@ -24,12 +23,6 @@ const AppNavigator = createStackNavigator({
         navigationOptions: {
             title: 'Signup'
         }
-    },
-    Test: {
-        screen: TestContainer,
-        navigationOptions: {
-            title: 'Test'
-        }
     }
 }, {
         initialRouteName: 'Login',
@@ -47,6 +40,11 @@ const ConversationNavigator = createStackNavigator({
         nagigationOptions: {
             title: 'Chat'
         }
+    },Users: {
+        screen: UserContainer,
+        nagigationOptions: {
+            title: 'Users'
+        }
     }
     }, {
         initialRouteName: 'Conversation',
@@ -54,14 +52,14 @@ const ConversationNavigator = createStackNavigator({
 })
 
 const ProfileNavigator = createStackNavigator({
-    Users: {
-        screen: UserContainer,
+    MyAccount: {
+        screen: MyAccountContainer,
         navigationOptions: {
-            title: 'Users'
+            title: 'MyAccount'
         }
     }
     }, {
-        initialRouteName: 'Users',
+        initialRouteName: 'MyAccount',
         headerLayoutPreset: 'center',
 })
 
@@ -78,12 +76,6 @@ const HomeNavigator = createStackNavigator({
         screen: HomeContainer,
         navigationOptions: {
             title: "Fil d'actualité"
-        }
-    },
-    MyAccount:{
-        screen: MyAccountContainer,
-        navigationOptions:{
-            title:"Mon Compte"
         }
     },
     Commentdetail: {

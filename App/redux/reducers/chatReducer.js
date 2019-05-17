@@ -18,20 +18,20 @@ export const getMessages = (messages) => {
   }
 }
 
-export const getMessagesRequest = (conversationId) => {
+export const getMessagesRequest = (user_id) => {
   return {
     type: GET_MESSAGES_REQUEST,
     payload: {
-      conversationId
+      user_id
     }
   }
 }
 
-export const postMessage = (conversationId, text) => {
+export const postMessage = (user_id, text) => {
   return {
     type: POST_MESSAGE_REQUEST,
     payload: {
-      conversationId,
+      user_id,
       text
     }
   }
