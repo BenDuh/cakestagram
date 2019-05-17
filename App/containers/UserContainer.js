@@ -8,6 +8,11 @@ import { ListItem } from 'react-native-elements'
 class UserContainer extends Component {
   componentDidMount() {
     this.props.getUser();
+    this.getUsersInterval = setInterval(() => this.props.getUser(), 3000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.getUsersInterval)
   }
 
   // Normalement on devrait pas avoir besoin de ça, ça devrait afficher le titre qui est dans NavigationApp

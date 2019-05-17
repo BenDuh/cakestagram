@@ -9,6 +9,11 @@ import ListConversation from '../components/ListConversation'
 class ConversationContainer extends Component {
   componentDidMount() {
     this.props.getConv();
+    this.getConvInterval = setInterval(() => this.props.getConv(), 3000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.getConvInterval)
   }
 
   render() {

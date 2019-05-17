@@ -69,7 +69,8 @@ class SinglePost extends Component {
         const uriAvatar = post ? post.owner.avatar : imgBase
         const avatar = <Avatar rounded source={{ uri: uriAvatar }} containerStyle={styles.singlePostAvatar} />
 
-        const uri = post ? post.thumb : imgBase
+        // Si il y a un post, récupérer l'uri de son .thumb. Si il n'y a pas de .thumb, on prend le .attachment (à priori plus lourd)
+        const uri = post ? (post.thumb ? post.thumb : post.attachment) : imgBase
         const image = <Image source={{ uri }} style={{ height: 200 }} resizeMode="cover" />
 
         const ownerFirstname = post ? post.owner.first_name : "Vide"
@@ -82,7 +83,7 @@ class SinglePost extends Component {
                 type="font-awesome"
                 style={{ margin: 10 }}
                 size={20}
-                regular
+                solid
                 onPress={this.clickLike} />
             :
             <Icon
@@ -90,7 +91,7 @@ class SinglePost extends Component {
                 type="font-awesome"
                 style={{ margin: 10 }}
                 size={20}
-                solid
+                regular
                 onPress={this.clickLike} />
 
         const comment = post.comments_count ?

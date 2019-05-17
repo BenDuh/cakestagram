@@ -57,7 +57,6 @@ class ChatContainer extends Component {
   }
 
   render() {
-    console.log('props Chat', this.props)
     const { messages } = this.props
 
     return (

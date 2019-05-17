@@ -17,13 +17,13 @@ class HomeContainer extends Component {
     )
 
     render() {
-        console.log(this.props);
+        console.log('this.props dans HomeContainer', this.props);
 
         return (
             // SI ON A LE TEMPS OPTIMISER AVEC scrollToItem() et getItemLayout
             <View>
                 <FlatList
-                    data={this.props.posts.reverse()}
+                    data={this.props.posts}
                     keyExtractor={(item) => `${item.id}`}
                     renderItem={this._renderPost}
                 />
