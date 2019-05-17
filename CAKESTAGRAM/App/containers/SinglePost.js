@@ -27,8 +27,8 @@ goToSinglePostDetail = post => {
     this.props.navigation.navigate("Commentdetail", { post });
   };
 
- clickLike = (like) => {
-     this.props.postLikeRequest(like);
+ clickLike = () => {
+     this.props.postLikeRequest();
   };
 
  displayComments = () => {
@@ -109,7 +109,7 @@ render() {
       style={{ margin: 10 }}
       size={20}
       solid
-      onPress={this.clickLike(like)}
+      onPress={this.clickLike}
     />
   );
 
