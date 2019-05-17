@@ -16,7 +16,6 @@ const imgBase = "https://news.nationalgeographic.com/content/dam/news/2018/05/17
 class SinglePost extends Component {
     componentDidMount() {
         const myId = this.props.post.id
-        console.log("componentDidMount", myId)
         this.props.getCommentsRequest(myId);
     }
 
@@ -55,8 +54,6 @@ class SinglePost extends Component {
     }
 
     showComments = () => {
-        console.log("this.props", this.props)
-        console.log("this.props.comments", this.props.comments)
         //{this.props.comments[0].text}
         const commentsShow = (this.props.comments.length > 0) ? <View>{this.displayComments()}</View> : <Text></Text>
         return (
