@@ -39,10 +39,10 @@ const ConversationNavigator = createStackNavigator({
         nagigationOptions: {
             title: 'Chat'
         }
-    },User: {
+    },Users: {
         screen: UserContainer,
         nagigationOptions: {
-            title: 'User'
+            title: 'Users'
         }
     }
     }, {
