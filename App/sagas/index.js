@@ -1,6 +1,4 @@
 import { all, takeLatest, takeEvery } from 'redux-saga/effects'
-import { APPLICATION_ACTION_REQUEST } from '../redux/reducers/applicationReducer'
-import { getTest } from './applicationSaga'
 import { GET_POSTS_REQUEST } from '../redux/reducers/homeReducer';
 import { getPostSaga } from './homeSaga';
 import { GET_COMMENTS_REQUEST } from '../redux/reducers/commentsReducer';
@@ -23,7 +21,6 @@ import {editProfilSaga} from './editSaga'
 
 export default function * rootSaga () {
   yield all([
-    // takeLatest(APPLICATION_ACTION_REQUEST, getTest),
     takeEvery(GET_POSTS_REQUEST, getPostSaga),
     takeEvery(GET_COMMENTS_REQUEST, getCommentsSaga),
     takeLatest(CONVERSATION_GET_REQUEST, conversationGet),
