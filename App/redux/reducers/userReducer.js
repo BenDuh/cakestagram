@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-    user:["pas d'utilisateur présents"]
+    user:[]
     }
     
     export const USER_GET = 'USER_GET'
