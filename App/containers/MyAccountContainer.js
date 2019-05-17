@@ -9,6 +9,7 @@ import MyInput from '../components/myInput'
 import { Formik } from 'formik'
 import ImagePicker from 'react-native-image-crop-picker'
 import RNFetchBlob from 'rn-fetch-blob'
+import api from '../config/api'
 
 let INITIAL_VALUES={
     nom : '',
@@ -22,18 +23,36 @@ class MyAccountContainer extends React.Component {
     }
     componentDidMount(){
         this.props.getMyAccount()
+        console.log('authorization', api.headers.Authorization)
     }
     onEditPress = ()=>{
-this.setState({
-    showForm:true
-})
-INITIAL_VALUES={
-nom: this.props.account.last_name,
-prenom: this.props.account.first_name,
-
-}
+        this.setState({
+            showForm:true
+        })
+        INITIAL_VALUES={
+        nom: this.props.account.last_name,
+        prenom: this.props.account.first_name,
+        }
     }
-
+    sendImage = () =>{
+        RNFetchBlob.fetch('POST', 'https://formation-api.k8s.svc.idee.cloud/api/users/edit', {
+        Authorization : api.headers.Authorization,
+        'Dropbox-API-Arg': JSON.stringify({
+        path : this.state.image.path,
+        mode : this.state.image.mime,
+        autorename : true,
+        mute : false
+        }),
+        'Content-Type' : 'application/octet-stream',
+        }, RNFetchBlob.wrap(this.state.image.path))
+        .then((res) => {
+        console.log(res.text())
+    })
+    .catch((err) => {
+        console.log(err)
+        // error handling ..
+    })
+    }
     onSubmit = (e)=>{
       this.props.getMyEdit(e)
     }
@@ -83,6 +102,10 @@ prenom: this.props.account.first_name,
                                     <Button 
                                         title="Choisir une image"
                                         onPress={this.selectPhoto}
+                                    />
+                                     <Button 
+                                        title="send une image"
+                                        onPress={this.sendImage}
                                     />
                                     <View style={{ alignItems: 'center' }}>
                                         <Button
