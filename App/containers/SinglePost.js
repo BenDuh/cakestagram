@@ -65,8 +65,6 @@ class SinglePost extends Component {
     }
 
     render() {
-        console.log('this.props in SinglePost ' + this.props.post.id, this.props)
-        console.log('attachment in this.props in SinglePost ' + this.props.post.id, this.props.post.attachment)
         const { post } = this.props
         const uriAvatar = post ? post.owner.avatar : imgBase
         const avatar = <Avatar rounded source={{ uri: uriAvatar }} containerStyle={styles.singlePostAvatar} />
@@ -85,7 +83,7 @@ class SinglePost extends Component {
                 type="font-awesome"
                 style={{ margin: 10 }}
                 size={20}
-                regular
+                solid
                 onPress={this.clickLike} />
             :
             <Icon
@@ -93,7 +91,7 @@ class SinglePost extends Component {
                 type="font-awesome"
                 style={{ margin: 10 }}
                 size={20}
-                solid
+                regular
                 onPress={this.clickLike} />
 
         const comment = post.comments_count ?
