@@ -3,46 +3,46 @@ import { Button, Text, View } from "react-native";
 import { connect } from "react-redux";
 import { getUserRequest } from "../redux/reducers/userReducer";
 import { FlatList } from 'react-native-gesture-handler';
+import { ListItem } from 'react-native-elements'
 
 class UserContainer extends Component {
   componentDidMount() {
     this.props.getUser();
   }
 
-  /*     toLogin = () =>{
-        this.props.navigation.navigate('Login')
-    } */
+  // Normalement on devrait pas avoir besoin de ça, ça devrait afficher le titre qui est dans NavigationApp
+  static navigationOptions = {
+    title: 'Users'
+  }
 
   render() {
     const { navigation, user } = this.props;
+    console.log('user in UserContainer', user)
+
     return (
-      <View>
-        <Text>Les utilisateurs</Text>
-        {/*   <Button title="Find Users" onPress={this.props.getUser} /> */}
+      <View style={{ flex: 1 }}>
         <FlatList
           data={user}
-          renderItem={({ item }) => (
-            <View>
-              <Text>{item.last_name}</Text>
-              <Button
-                title="oui"
-                onPress={() => navigation.navigate("Chat", {user: item})}
-                buttonStyle={{
-                  backgroundColor: "#2bcbba",
-                  width: 200,
-                  marginBottom: 20
-                }}
-              />
-            </View>
-          )}
+          renderItem={({ item }) => {
+            return (
+                <ListItem
+                  key={item.id}
+                  leftAvatar={{ source: { uri: item.avatar_thumb } }}
+                  title={`${item.first_name} ${item.last_name}`}
+                  onPress={() => navigation.navigate('Chat', { user: item })}
+                />
+            )
+          }}
+          keyExtractor={item => item.id.toString()}
         />
+
       </View>
     );
   }
 }
 
 const mapStateToProps = state => {
-   
+
   return {
     user: state.userReducer.user
   };

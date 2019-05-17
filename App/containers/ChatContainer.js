@@ -18,35 +18,18 @@ class ChatContainer extends Component {
     
     this.user_id = this.conversation ? this.conversation.user.id : this.user.id
 
-    if (this.conversation) this.props.getMessagesRequest(this.user_id)
-
-
     // TEMPORAIRE EN ATTENDANT DE FAIRE LA CONVERSATION INSTANTANÉE
+    this.props.getMessagesRequest(this.user_id)
     this.getMessagesInterval = setInterval(() => this.props.getMessagesRequest(this.user_id), 3000)
   }
-
-/*   static navigationOptions = ({ navigation }) => {
-    const conversation = navigation.getParam('conversation', null)
-    const user = conversation ? conversation.user : null
-
-    return {
-      title: user ? `${user.first_name} ${user.last_name}` : ''
-    };
-  };  */
 
   static navigationOptions =({navigation})=>{
     const conversation = navigation.getParam('conversation', null)
     const user = navigation.getParam('user', null)
-
-    // console.log('conversation & user & first_name dans navigationOptions dans ChatContainer')
-    // console.log(conversation)
-    // console.log(user)
-
     const first_name = conversation ? conversation.user.first_name : user.first_name
-    console.log(first_name)
+
     return {title: first_name}
   }
-
 
   // Supprime les messages du store, sinon quand on va sur une autre discussion on voit brievement ces messages
   // / ! \ Du coup quand on fait "retour" il y a un truc qui s'affiche brièvement
