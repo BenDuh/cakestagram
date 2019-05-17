@@ -18,6 +18,8 @@ import { signUpGet } from './signupSaga'
 import {accountGetSaga} from './accountSaga' 
 import { EDIT_GET_REQUEST } from '../redux/reducers/editProfilReducer';
 import {editProfilSaga} from './editSaga'
+import {POST_GET_REQUEST} from '../redux/reducers/postReducer'
+import {postSaga} from '../sagas/postSaga'
 
 export default function * rootSaga () {
   yield all([
@@ -31,7 +33,8 @@ export default function * rootSaga () {
     takeLatest(SESSION_GET_REQUEST, sessionGet),
     takeLatest(MY_ACCOUNT_GET_REQUEST,accountGetSaga),
     takeLatest(POST_MESSAGE_REQUEST, postMessageSaga),
-    takeLatest(EDIT_GET_REQUEST,editProfilSaga)
+    takeLatest(EDIT_GET_REQUEST,editProfilSaga),
+    takeLatest(POST_GET_REQUEST,postSaga)
   ])
 }
 

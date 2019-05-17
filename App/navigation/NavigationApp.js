@@ -10,6 +10,7 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import ChatContainer from "../containers/ChatContainer";
 import MyAccountContainer from "../containers/MyAccountContainer";
+import CreatePostContainer from "../containers/CreatePostContainer";
 
 const AppNavigator = createStackNavigator({
     Login: {
@@ -64,6 +65,14 @@ const ProfileNavigator = createStackNavigator({
         headerLayoutPreset: 'center',
 })
 
+const PostNavigator = createStackNavigator({
+    Poster:{
+        screen:CreatePostContainer,
+        navigationOptions:{
+            title:'Poster'
+        }
+    }
+})
 const HomeNavigator = createStackNavigator({
     Home: {
         screen: HomeContainer,
@@ -83,6 +92,7 @@ const HomeNavigator = createStackNavigator({
             title: 'Commentaires du post'
         }
     },
+    
     Profile: {
         screen: UserContainer,
         navigationOptions: {
@@ -97,7 +107,10 @@ const HomeNavigator = createStackNavigator({
 const TabNavigator =  createBottomTabNavigator({
         Home: HomeNavigator,
         Conversation: ConversationNavigator,
+        Poster: PostNavigator,
         Profil: ProfileNavigator
+        
+        
     },
     {defaultNavigationOptions: ({ navigation }) => ({
         tabBarIcon: ({ focused, horizontal, tintColor }) => {
@@ -112,6 +125,10 @@ const TabNavigator =  createBottomTabNavigator({
                 color = `${focused ? 'white' : '#2bcbba'}`
             } else if (routeName === 'Profil') {
                 iconName = 'user'
+                color = `${focused ? 'white' : '#2bcbba'}`
+            }
+            else if (routeName === 'Poster') {
+                iconName = 'plus'
                 color = `${focused ? 'white' : '#2bcbba'}`
             }
         return <Icon name={iconName} size={24} color={color} />}
