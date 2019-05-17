@@ -22,19 +22,6 @@ class HomeContainer extends Component {
         return (
             // SI ON A LE TEMPS OPTIMISER AVEC scrollToItem() et getItemLayout
             <View>
-                <View style={{ alignItems: 'center' }}>
-                    <Button
-                        title='Go to conversation'
-                        onPress={() => this.props.navigation.navigate('Conversation')}
-                        buttonStyle={{ backgroundColor: '#2bcbba', width: 200, marginBottom: 20}}
-                    />
-                    <Button
-                        title='Go to My Account'
-                        onPress={() => this.props.navigation.navigate('MyAccount')}
-                        buttonStyle={{ backgroundColor: '#2bcbba', width: 200, marginBottom: 20}}
-                    />
-                </View>
-
                 <FlatList
                     data={this.props.posts.reverse()}
                     keyExtractor={(item) => `${item.id}`}
