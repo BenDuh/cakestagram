@@ -12,8 +12,8 @@ import logo from '../images/logo-cakestagram-blanc.png'
 import { Button } from 'react-native-elements';
 
 const INITIAL_VALUES = {
-    email: 'test@test.fr',
-    password: 'monkey75'
+    email: 'sebcestbien@sdf.fr',
+    password: '123456'
 }
 class LoginContainer extends Component {
     onSubmit = (e) => {

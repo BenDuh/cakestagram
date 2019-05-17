@@ -5,7 +5,6 @@ import { getUserRequest } from "../redux/reducers/userReducer";
 import { FlatList } from 'react-native-gesture-handler';
 
 class UserContainer extends Component {
-
   componentDidMount() {
     this.props.getUser();
   }
@@ -15,19 +14,28 @@ class UserContainer extends Component {
     } */
 
   render() {
-    const{ navigation, user }= this.props
+    const { navigation, user } = this.props;
     return (
       <View>
         <Text>Les utilisateurs</Text>
         {/*   <Button title="Find Users" onPress={this.props.getUser} /> */}
         <FlatList
           data={user}
-          renderItem={({ item }) => <Text>{item.last_name}</Text>} />
-          <Button
-          title="oui"
-    onPress={() => navigation.navigate('Chat')}
-    buttonStyle={{ backgroundColor: '#2bcbba', width: 200, marginBottom: 20 }}
-/>
+          renderItem={({ item }) => (
+            <View>
+              <Text>{item.last_name}</Text>
+              <Button
+                title="oui"
+                onPress={() => navigation.navigate("Chat", {user: item})}
+                buttonStyle={{
+                  backgroundColor: "#2bcbba",
+                  width: 200,
+                  marginBottom: 20
+                }}
+              />
+            </View>
+          )}
+        />
       </View>
     );
   }
