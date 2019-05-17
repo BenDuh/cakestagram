@@ -18,7 +18,6 @@ export const getMyAccountRequest = () =>{
 }
 
 export const myAccountReducer = (state = INITIAL_STATE, action) => {
-    console.log(state)
     switch (action.type) {
         case MY_ACCOUNT_GET_REQUEST :
             return {

@@ -28,7 +28,6 @@ export const getSignupError = () =>{
 }
 
 export const signupReducer = (state = INITIAL_STATE, action) => {
-    console.log(state)
     switch (action.type) {
         case SIGNUP_GET_REQUEST:
             return {

@@ -36,7 +36,7 @@ export const homeReducer = (state = INITIAL_STATE, action) => {
         case GET_POSTS:
             return {
                 ...state,
-                posts: [...state.posts, ...(action.payload.posts || [])]
+                posts: [...action.payload.posts]
             }
     
         default:
